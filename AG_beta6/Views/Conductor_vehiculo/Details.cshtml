@@ -1,0 +1,42 @@
+﻿@model DataLayer6.Conductor_vehiculo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Conductor_vehiculo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_cond_vehi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_cond_vehi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Conductor.Dig)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Conductor.Dig)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vehiculo.Dig)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vehiculo.Dig)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

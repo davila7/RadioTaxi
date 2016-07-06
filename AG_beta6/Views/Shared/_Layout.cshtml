@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Administración AG</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="http://blackrockdigital.github.io/startbootstrap-simple-sidebar/css/simple-sidebar.css" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("GesFlota", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                    @Html.ActionLink("Inicio", "Index", "Home")
+                </li>
+                <li>
+                    @Html.ActionLink("Usuarios", "Index", "Usuario")
+                </li>
+                <li>
+                    @Html.ActionLink("Perfiles", "Index", "Perfil")
+                </li>
+                <li>
+                    @Html.ActionLink("Clientes", "Index", "Cliente")
+                </li>
+                <li>
+                    @Html.ActionLink("Empresas", "Index", "Empresa")
+                </li>
+                <li>
+                    @Html.ActionLink("Chofer", "Index", "Conductor")
+                </li>
+                <li>
+                    @Html.ActionLink("Vehículos", "Index", "Vehiculo")
+                </li>
+                <li>
+                    @Html.ActionLink("Acerca de", "About", "Home")
+                </li>
+                <li>
+                    @Html.ActionLink("Contacto", "Contact", "Home")
+                </li>
+                <li>
+                    @Html.ActionLink("Conducto-Vehiculo", "Index", "Conductor_vehiculo")
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - Administración AG</p>
+                </footer>
+            </div>
+        </div>
+   </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>

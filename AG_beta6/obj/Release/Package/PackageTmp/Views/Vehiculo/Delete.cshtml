@@ -1,0 +1,80 @@
+﻿@model DataLayer6.Vehiculo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Está seguro de borrar esto?</h3>
+<div>
+    <h4>Vehículo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Dig)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dig)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cilindrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cilindrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KmLt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KmLt)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Id_Vehi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Vehi)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>

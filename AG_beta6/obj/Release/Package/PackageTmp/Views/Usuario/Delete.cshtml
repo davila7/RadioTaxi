@@ -1,0 +1,80 @@
+﻿@model DataLayer6.Usuario
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Rut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dig)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dig)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreDeUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreDeUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contrasenha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contrasenha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Perfil.Dsc_Perfil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Perfil.Dsc_Perfil)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

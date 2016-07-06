@@ -1,0 +1,11 @@
+C:\Users\rcb\documents\visual studio 2013\Projects\AG_beta6\DataLayer6\bin\Release\DataLayer6.dll.config
+C:\Users\rcb\documents\visual studio 2013\Projects\AG_beta6\DataLayer6\bin\Release\DataLayer6.dll
+C:\Users\rcb\documents\visual studio 2013\Projects\AG_beta6\DataLayer6\bin\Release\DataLayer6.pdb
+C:\Users\rcb\documents\visual studio 2013\Projects\AG_beta6\DataLayer6\bin\Release\EntityFramework.dll
+C:\Users\rcb\documents\visual studio 2013\Projects\AG_beta6\DataLayer6\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\rcb\documents\visual studio 2013\Projects\AG_beta6\DataLayer6\bin\Release\EntityFramework.xml
+C:\Users\rcb\documents\visual studio 2013\Projects\AG_beta6\DataLayer6\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\rcb\documents\visual studio 2013\Projects\AG_beta6\DataLayer6\bin\Release\es\EntityFramework.resources.dll
+C:\Users\rcb\documents\visual studio 2013\Projects\AG_beta6\DataLayer6\bin\Release\es\EntityFramework.SqlServer.resources.dll
+C:\Users\rcb\documents\visual studio 2013\Projects\AG_beta6\DataLayer6\obj\Release\DataLayer6.dll
+C:\Users\rcb\documents\visual studio 2013\Projects\AG_beta6\DataLayer6\obj\Release\DataLayer6.pdb

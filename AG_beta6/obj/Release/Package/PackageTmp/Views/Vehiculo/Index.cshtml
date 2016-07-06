@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DataLayer6.Vehiculo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Dig)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Anho)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cilindrada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KmLt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Vehi)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dig)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modelo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Anho)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cilindrada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KmLt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_Vehi)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Patente }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Patente }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.Patente })
+        </td>
+    </tr>
+}
+
+</table>

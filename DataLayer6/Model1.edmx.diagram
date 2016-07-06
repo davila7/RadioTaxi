@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a362f2b0b6ea4ac8a7eb564f6aae9f4f" Name="Diagram1" ZoomLevel="62">
+        <EntityTypeShape EntityType="DBControlTaxiModel.Cliente" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Conductor" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Conductor_vehiculo" Width="1.5" PointX="6" PointY="4.375" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Direccion" Width="1.5" PointX="1.5" PointY="16.25" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Empresa" Width="1.5" PointX="1.5" PointY="12.125" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.estado" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Perfil" Width="1.5" PointX="5.75" PointY="9" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="1.625" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Usuario" Width="1.5" PointX="8" PointY="7.875" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Vehiculo" Width="1.5" PointX="3.75" PointY="10" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Viaje" Width="1.5" PointX="3" PointY="3.5" />
+        <AssociationConnector Association="DBControlTaxiModel.FK_cliente_empresa" />
+        <AssociationConnector Association="DBControlTaxiModel.FK_Viaje_cliente" />
+        <AssociationConnector Association="DBControlTaxiModel.FK_conductor_vehiculo_conductor" />
+        <AssociationConnector Association="DBControlTaxiModel.FK_Viaje_conductor" />
+        <AssociationConnector Association="DBControlTaxiModel.FK_conductor_vehiculo_Vehiculo" />
+        <AssociationConnector Association="DBControlTaxiModel.FK_empresa_direccion" />
+        <AssociationConnector Association="DBControlTaxiModel.FK_Viaje_direccion" />
+        <AssociationConnector Association="DBControlTaxiModel.FK_Viaje_direccion1" />
+        <AssociationConnector Association="DBControlTaxiModel.FK_Viaje_estado" />
+        <AssociationConnector Association="DBControlTaxiModel.FK_Usuario_Perfil1" />
+        <AssociationConnector Association="DBControlTaxiModel.Cliente_Direccion" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

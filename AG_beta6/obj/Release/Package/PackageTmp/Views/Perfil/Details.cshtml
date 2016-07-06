@@ -1,0 +1,26 @@
+﻿@model DataLayer6.Perfil
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Perfil</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Dsc_Perfil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dsc_Perfil)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Perfil }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

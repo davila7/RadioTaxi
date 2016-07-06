@@ -1,0 +1,74 @@
+﻿@model DataLayer6.Usuario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Rut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dig)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dig)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreDeUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreDeUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contrasenha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contrasenha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Perfil.Dsc_Perfil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Perfil.Dsc_Perfil)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Usua }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

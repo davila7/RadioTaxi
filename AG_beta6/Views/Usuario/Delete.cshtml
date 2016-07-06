@@ -1,0 +1,120 @@
+﻿@model DataLayer6.Usuario
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Rut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dig)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dig)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_usr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_usr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ape_pat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ape_pat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ape_mat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ape_mat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fono1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fono1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fono2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fono2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flg_hab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flg_hab)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flg_elim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flg_elim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contrasenha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contrasenha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Perfil.Dsc_Perfil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Perfil.Dsc_Perfil)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a la Lista", "Index")
+        </div>
+    }
+</div>

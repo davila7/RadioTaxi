@@ -1,0 +1,82 @@
+﻿@model DataLayer6.Conductor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Conductor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Dig)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dig)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Habilitado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Habilitado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Movil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Movil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Cond)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Cond)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Rut }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
