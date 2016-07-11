@@ -8,6 +8,7 @@
     <EntitySet Name="Empresa" EntityType="DBControlTaxiModel.Empresa" />
     <EntitySet Name="estado" EntityType="DBControlTaxiModel.estado" />
     <EntitySet Name="Perfil" EntityType="DBControlTaxiModel.Perfil" />
+    <EntitySet Name="Reserva" EntityType="DBControlTaxiModel.Reserva" />
     <EntitySet Name="sysdiagrams" EntityType="DBControlTaxiModel.sysdiagrams" />
     <EntitySet Name="Usuario" EntityType="DBControlTaxiModel.Usuario" />
     <EntitySet Name="Vehiculo" EntityType="DBControlTaxiModel.Vehiculo" />
@@ -16,6 +17,10 @@
       <End Role="Empresa" EntitySet="Empresa" />
       <End Role="Cliente" EntitySet="Cliente" />
     </AssociationSet>
+    <AssociationSet Name="FK_Reserva_Cliente" Association="DBControlTaxiModel.FK_Reserva_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Reserva" EntitySet="Reserva" />
+    </AssociationSet>
     <AssociationSet Name="FK_Viaje_cliente" Association="DBControlTaxiModel.FK_Viaje_cliente">
       <End Role="Cliente" EntitySet="Cliente" />
       <End Role="Viaje" EntitySet="Viaje" />
@@ -23,6 +28,10 @@
     <AssociationSet Name="FK_conductor_vehiculo_conductor" Association="DBControlTaxiModel.FK_conductor_vehiculo_conductor">
       <End Role="Conductor" EntitySet="Conductor" />
       <End Role="Conductor_vehiculo" EntitySet="Conductor_vehiculo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reserva_Conductor" Association="DBControlTaxiModel.FK_Reserva_Conductor">
+      <End Role="Conductor" EntitySet="Conductor" />
+      <End Role="Reserva" EntitySet="Reserva" />
     </AssociationSet>
     <AssociationSet Name="FK_Viaje_conductor" Association="DBControlTaxiModel.FK_Viaje_conductor">
       <End Role="Conductor" EntitySet="Conductor" />
@@ -52,6 +61,10 @@
       <End Role="Perfil" EntitySet="Perfil" />
       <End Role="Usuario" EntitySet="Usuario" />
     </AssociationSet>
+    <AssociationSet Name="FK_Reserva_Vehiculo" Association="DBControlTaxiModel.FK_Reserva_Vehiculo">
+      <End Role="Vehiculo" EntitySet="Vehiculo" />
+      <End Role="Reserva" EntitySet="Reserva" />
+    </AssociationSet>
     <AssociationSet Name="Cliente_Direccion" Association="DBControlTaxiModel.Cliente_Direccion">
       <End Role="Cliente" EntitySet="Cliente" />
       <End Role="Direccion" EntitySet="Direccion" />
@@ -69,6 +82,7 @@
     <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
     <Property Name="Id_Clie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Empresa" Relationship="DBControlTaxiModel.FK_cliente_empresa" FromRole="Cliente" ToRole="Empresa" />
+    <NavigationProperty Name="Reserva" Relationship="DBControlTaxiModel.FK_Reserva_Cliente" FromRole="Cliente" ToRole="Reserva" />
     <NavigationProperty Name="Viaje" Relationship="DBControlTaxiModel.FK_Viaje_cliente" FromRole="Cliente" ToRole="Viaje" />
     <NavigationProperty Name="Direccion" Relationship="DBControlTaxiModel.Cliente_Direccion" FromRole="Cliente" ToRole="Direccion" />
   </EntityType>
@@ -86,6 +100,7 @@
     <Property Name="Movil" Type="Int32" Nullable="false" />
     <Property Name="Id_Cond" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Conductor_vehiculo" Relationship="DBControlTaxiModel.FK_conductor_vehiculo_conductor" FromRole="Conductor" ToRole="Conductor_vehiculo" />
+    <NavigationProperty Name="Reserva" Relationship="DBControlTaxiModel.FK_Reserva_Conductor" FromRole="Conductor" ToRole="Reserva" />
     <NavigationProperty Name="Viaje" Relationship="DBControlTaxiModel.FK_Viaje_conductor" FromRole="Conductor" ToRole="Viaje" />
   </EntityType>
   <EntityType Name="Conductor_vehiculo">
@@ -143,6 +158,26 @@
     <Property Name="Dsc_Perfil" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Usuario" Relationship="DBControlTaxiModel.FK_Usuario_Perfil1" FromRole="Perfil" ToRole="Usuario" />
   </EntityType>
+  <EntityType Name="Reserva">
+    <Key>
+      <PropertyRef Name="Id_Reserva" />
+    </Key>
+    <Property Name="Id_Reserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cliente_Id" Type="Int32" Nullable="false" />
+    <Property Name="RutConductor" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Name="PatenteVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha_trx" Type="DateTime" Precision="3" />
+    <Property Name="Fecha_viaje" Type="DateTime" Precision="3" />
+    <Property Name="Lng_origen" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Lat_origen" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Dir_origen" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Lng_destino" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Lat_destino" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Dir_destino" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cliente" Relationship="DBControlTaxiModel.FK_Reserva_Cliente" FromRole="Reserva" ToRole="Cliente" />
+    <NavigationProperty Name="Conductor" Relationship="DBControlTaxiModel.FK_Reserva_Conductor" FromRole="Reserva" ToRole="Conductor" />
+    <NavigationProperty Name="Vehiculo" Relationship="DBControlTaxiModel.FK_Reserva_Vehiculo" FromRole="Reserva" ToRole="Vehiculo" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -160,6 +195,7 @@
     <Property Name="Rut" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
     <Property Name="Dig" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
     <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="Ape_pat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Ape_mat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Fono1" Type="Int32" />
@@ -185,6 +221,7 @@
     <Property Name="KmLt" Type="Double" />
     <Property Name="Id_Vehi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Conductor_vehiculo" Relationship="DBControlTaxiModel.FK_conductor_vehiculo_Vehiculo" FromRole="Vehiculo" ToRole="Conductor_vehiculo" />
+    <NavigationProperty Name="Reserva" Relationship="DBControlTaxiModel.FK_Reserva_Vehiculo" FromRole="Vehiculo" ToRole="Reserva" />
   </EntityType>
   <EntityType Name="Viaje">
     <Key>
@@ -218,6 +255,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Reserva_Cliente">
+    <End Type="DBControlTaxiModel.Cliente" Role="Cliente" Multiplicity="1" />
+    <End Type="DBControlTaxiModel.Reserva" Role="Reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id_Clie" />
+      </Principal>
+      <Dependent Role="Reserva">
+        <PropertyRef Name="Cliente_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Viaje_cliente">
     <End Type="DBControlTaxiModel.Cliente" Role="Cliente" Multiplicity="0..1" />
     <End Type="DBControlTaxiModel.Viaje" Role="Viaje" Multiplicity="*" />
@@ -238,6 +287,18 @@
         <PropertyRef Name="Rut" />
       </Principal>
       <Dependent Role="Conductor_vehiculo">
+        <PropertyRef Name="RutConductor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reserva_Conductor">
+    <End Type="DBControlTaxiModel.Conductor" Role="Conductor" Multiplicity="1" />
+    <End Type="DBControlTaxiModel.Reserva" Role="Reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conductor">
+        <PropertyRef Name="Rut" />
+      </Principal>
+      <Dependent Role="Reserva">
         <PropertyRef Name="RutConductor" />
       </Dependent>
     </ReferentialConstraint>
@@ -323,6 +384,18 @@
       </Principal>
       <Dependent Role="Usuario">
         <PropertyRef Name="Id_Pefil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reserva_Vehiculo">
+    <End Type="DBControlTaxiModel.Vehiculo" Role="Vehiculo" Multiplicity="1" />
+    <End Type="DBControlTaxiModel.Reserva" Role="Reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehiculo">
+        <PropertyRef Name="Patente" />
+      </Principal>
+      <Dependent Role="Reserva">
+        <PropertyRef Name="PatenteVehiculo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

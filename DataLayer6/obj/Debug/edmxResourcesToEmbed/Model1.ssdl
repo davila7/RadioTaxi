@@ -79,6 +79,23 @@
     <Property Name="Id_Perfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Dsc_Perfil" Type="varchar" MaxLength="15" Nullable="false" />
   </EntityType>
+  <EntityType Name="Reserva">
+    <Key>
+      <PropertyRef Name="Id_Reserva" />
+    </Key>
+    <Property Name="Id_Reserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cliente_Id" Type="int" Nullable="false" />
+    <Property Name="RutConductor" Type="nchar" MaxLength="8" Nullable="false" />
+    <Property Name="PatenteVehiculo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Fecha_trx" Type="datetime" />
+    <Property Name="Fecha_viaje" Type="datetime" />
+    <Property Name="Lng_origen" Type="varchar" MaxLength="150" />
+    <Property Name="Lat_origen" Type="varchar" MaxLength="150" />
+    <Property Name="Dir_origen" Type="varchar" MaxLength="255" />
+    <Property Name="Lng_destino" Type="varchar" MaxLength="150" />
+    <Property Name="Lat_destino" Type="varchar" MaxLength="150" />
+    <Property Name="Dir_destino" Type="varchar" MaxLength="255" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -96,6 +113,7 @@
     <Property Name="Rut" Type="nchar" MaxLength="8" Nullable="false" />
     <Property Name="Dig" Type="nchar" MaxLength="1" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
     <Property Name="Ape_pat" Type="varchar" MaxLength="50" />
     <Property Name="Ape_mat" Type="varchar" MaxLength="50" />
     <Property Name="Fono1" Type="int" />
@@ -207,6 +225,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Reserva_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id_Clie" />
+      </Principal>
+      <Dependent Role="Reserva">
+        <PropertyRef Name="Cliente_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reserva_Conductor">
+    <End Role="Conductor" Type="Self.Conductor" Multiplicity="1" />
+    <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conductor">
+        <PropertyRef Name="Rut" />
+      </Principal>
+      <Dependent Role="Reserva">
+        <PropertyRef Name="RutConductor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reserva_Vehiculo">
+    <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="1" />
+    <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehiculo">
+        <PropertyRef Name="Patente" />
+      </Principal>
+      <Dependent Role="Reserva">
+        <PropertyRef Name="PatenteVehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Usuario_Perfil1">
     <End Role="Perfil" Type="Self.Perfil" Multiplicity="1" />
     <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -288,6 +342,7 @@
     <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="estado" EntityType="Self.estado" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Vehiculo" EntityType="Self.Vehiculo" Schema="dbo" store:Type="Tables" />
@@ -315,6 +370,18 @@
     <AssociationSet Name="FK_empresa_direccion" Association="Self.FK_empresa_direccion">
       <End Role="Direccion" EntitySet="Direccion" />
       <End Role="Empresa" EntitySet="Empresa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reserva_Cliente" Association="Self.FK_Reserva_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Reserva" EntitySet="Reserva" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reserva_Conductor" Association="Self.FK_Reserva_Conductor">
+      <End Role="Conductor" EntitySet="Conductor" />
+      <End Role="Reserva" EntitySet="Reserva" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reserva_Vehiculo" Association="Self.FK_Reserva_Vehiculo">
+      <End Role="Vehiculo" EntitySet="Vehiculo" />
+      <End Role="Reserva" EntitySet="Reserva" />
     </AssociationSet>
     <AssociationSet Name="FK_Usuario_Perfil1" Association="Self.FK_Usuario_Perfil1">
       <End Role="Perfil" EntitySet="Perfil" />

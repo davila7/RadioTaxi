@@ -11,7 +11,6 @@ namespace DataLayer6
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Perfil
     {
@@ -20,9 +19,8 @@ namespace DataLayer6
         {
             this.Usuario = new HashSet<Usuario>();
         }
-        [Display(Name = "Perfil")]
+    
         public int Id_Perfil { get; set; }
-        [Display(Name = "Nombre Perfil")]
         public string Dsc_Perfil { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

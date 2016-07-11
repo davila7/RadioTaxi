@@ -78,6 +78,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Reserva">
+      <EntityTypeMapping TypeName="DBControlTaxiModel.Reserva">
+        <MappingFragment StoreEntitySet="Reserva">
+          <ScalarProperty Name="Dir_destino" ColumnName="Dir_destino" />
+          <ScalarProperty Name="Lat_destino" ColumnName="Lat_destino" />
+          <ScalarProperty Name="Lng_destino" ColumnName="Lng_destino" />
+          <ScalarProperty Name="Dir_origen" ColumnName="Dir_origen" />
+          <ScalarProperty Name="Lat_origen" ColumnName="Lat_origen" />
+          <ScalarProperty Name="Lng_origen" ColumnName="Lng_origen" />
+          <ScalarProperty Name="Fecha_viaje" ColumnName="Fecha_viaje" />
+          <ScalarProperty Name="Fecha_trx" ColumnName="Fecha_trx" />
+          <ScalarProperty Name="PatenteVehiculo" ColumnName="PatenteVehiculo" />
+          <ScalarProperty Name="RutConductor" ColumnName="RutConductor" />
+          <ScalarProperty Name="Cliente_Id" ColumnName="Cliente_Id" />
+          <ScalarProperty Name="Id_Reserva" ColumnName="Id_Reserva" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
       <EntityTypeMapping TypeName="DBControlTaxiModel.sysdiagrams">
         <MappingFragment StoreEntitySet="sysdiagrams">
@@ -102,6 +120,7 @@
           <ScalarProperty Name="Fono1" ColumnName="Fono1" />
           <ScalarProperty Name="Ape_mat" ColumnName="Ape_mat" />
           <ScalarProperty Name="Ape_pat" ColumnName="Ape_pat" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Dig" ColumnName="Dig" />
           <ScalarProperty Name="Rut" ColumnName="Rut" />

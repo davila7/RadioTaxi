@@ -18,6 +18,7 @@ namespace DataLayer6
         public Vehiculo()
         {
             this.Conductor_vehiculo = new HashSet<Conductor_vehiculo>();
+            this.Reserva = new HashSet<Reserva>();
         }
     
         public string Patente { get; set; }
@@ -31,5 +32,7 @@ namespace DataLayer6
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Conductor_vehiculo> Conductor_vehiculo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reserva> Reserva { get; set; }
     }
 }

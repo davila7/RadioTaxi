@@ -1,0 +1,74 @@
+﻿@model DataLayer6.Reserva
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reserva</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PatenteVehiculo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatenteVehiculo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_trx)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_trx)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_viaje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_viaje)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dir_origen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dir_origen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dir_destino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dir_destino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Rut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.Rut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Conductor.Dig)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Conductor.Dig)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Reserva }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

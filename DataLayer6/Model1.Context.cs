@@ -32,6 +32,7 @@ namespace DataLayer6
         public virtual DbSet<Empresa> Empresa { get; set; }
         public virtual DbSet<estado> estado { get; set; }
         public virtual DbSet<Perfil> Perfil { get; set; }
+        public virtual DbSet<Reserva> Reserva { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Vehiculo> Vehiculo { get; set; }

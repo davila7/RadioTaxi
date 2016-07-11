@@ -18,7 +18,14 @@ namespace AG_beta6.Controllers
         // GET: Usuario
         public async Task<ActionResult> Index()
         {
-            var usuario = db.Usuario.Include(u => u.Perfil);
+            var usuario = db.Usuario.Where(x => x.Flg_elim == false).Include(u => u.Perfil);
+            return View(await usuario.ToListAsync());
+        }
+
+        // GET: Usuario Deleted
+        public async Task<ActionResult> DeletedIndex()
+        {
+            var usuario = db.Usuario.Where(x=>x.Flg_elim == true).Include(u => u.Perfil);
             return View(await usuario.ToListAsync());
         }
 
@@ -49,7 +56,7 @@ namespace AG_beta6.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Rut,Dig,Nombre_usr,Nombre,Ape_pat,Ape_mat,Fono1,Fono2,Flg_hab,Flg_elim,Contrasenha,Id_Pefil,Id_Usua")] Usuario usuario)
+        public async Task<ActionResult> Create([Bind(Include = "Rut,Dig,Nombre_usr, Email,Nombre,Ape_pat,Ape_mat,Fono1,Fono2,Flg_hab,Flg_elim,Contrasenha,Id_Pefil,Id_Usua")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -78,12 +85,29 @@ namespace AG_beta6.Controllers
             return View(usuario);
         }
 
+        // GET: Usuario/Restaurar/5
+        public async Task<ActionResult> Restaurar(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Usuario usuario = await db.Usuario.FindAsync(id);
+            if (usuario == null)
+            {
+                return HttpNotFound();
+            }
+            usuario.Flg_elim = false;
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
         // POST: Usuario/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Rut,Dig,Nombre_usr,Nombre,Ape_pat,Ape_mat,Fono1,Fono2,Flg_hab,Flg_elim,Contrasenha,Id_Pefil,Id_Usua")] Usuario usuario)
+        public async Task<ActionResult> Edit([Bind(Include = "Rut,Dig,Nombre_usr, Email, Nombre,Ape_pat,Ape_mat,Fono1,Fono2,Flg_hab,Flg_elim,Contrasenha,Id_Pefil,Id_Usua")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {

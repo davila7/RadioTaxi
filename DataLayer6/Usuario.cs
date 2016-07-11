@@ -15,27 +15,27 @@ namespace DataLayer6
     
     public partial class Usuario
     {
+        [Required]
         public string Rut { get; set; }
+        [Required]
         public string Dig { get; set; }
+        [Required]
         public string Nombre { get; set; }
-        [Display(Name = "Apellido Paterno")]
+        public string Email { get; set; }
         public string Ape_pat { get; set; }
-        [Display(Name = "Apellido Materno")]
         public string Ape_mat { get; set; }
         public Nullable<int> Fono1 { get; set; }
         public Nullable<int> Fono2 { get; set; }
-        [Display(Name = "Nombre de Usuario")]
+        [Required, StringLength(10)]
         public string Nombre_usr { get; set; }
-        [Display(Name = "Habilitado")]
         public bool Flg_hab { get; set; }
-        [Display(Name = "Eliminado")]
         public bool Flg_elim { get; set; }
-        [DataType(DataType.Password)]
-        [Display(Name = "Contraseña")]
+        [Required, StringLength(8)]
         public string Contrasenha { get; set; }
+        [Required]
         public int Id_Pefil { get; set; }
         public int Id_Usua { get; set; }
-    
+
         public virtual Perfil Perfil { get; set; }
     }
 }

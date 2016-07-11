@@ -9,12 +9,15 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AG_beta6.Models;
+using DataLayer6;
+using System.Collections.Generic;
 
 namespace AG_beta6.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private DBControlTaxi db = new DBControlTaxi();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -52,6 +55,36 @@ namespace AG_beta6.Controllers
             }
         }
 
+        private void OwinSignIn(Usuario user, bool isPersistence = false)
+        {
+           /* var claims = new[] {
+                new Claim(ClaimTypes.Name, user.Nombre),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.NameIdentifier, "Id_Usua")
+            };*/
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Nombre),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.NameIdentifier, "userId"), //should be userid
+            };
+
+            var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+
+            var perfil = db.Perfil.Where(x => x.Id_Perfil == x.Id_Perfil).ToList();
+            if (perfil.Any())
+            {
+                var roleClaims = perfil.Select(r => new Claim(ClaimTypes.Role, r.Dsc_Perfil));
+                identity.AddClaims(roleClaims);
+            }
+
+            var context = Request.GetOwinContext();
+            var authManager = context.Authentication;
+
+            authManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistence }, identity);
+        }
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -66,16 +99,26 @@ namespace AG_beta6.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
+            Usuario user = db.Usuario.SingleOrDefault(x => x.Nombre_usr == model.Nombre_usr);
+            if (user != null && (user.Contrasenha == model.Password))
+            {
+                OwinSignIn(user, model.RememberMe);
+                return RedirectToLocal(returnUrl);
+            }
+
+            ModelState.AddModelError("", "Nombre de Usuario y/o Contraseña invalida.");
+            return View();
+
             // No cuenta los errores de inicio de sesión para el bloqueo de la cuenta
             // Para permitir que los errores de contraseña desencadenen el bloqueo de la cuenta, cambie a shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            /*var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -88,7 +131,7 @@ namespace AG_beta6.Controllers
                 default:
                     ModelState.AddModelError("", "Intento de inicio de sesión no válido.");
                     return View(model);
-            }
+            }*/
         }
 
         //

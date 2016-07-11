@@ -7,8 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Crear Nuevo", "Create")
-    @Html.ActionLink("Usuarios Eliminados", "DeletedIndex")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -78,9 +77,7 @@
            Perfil
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Usua }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_Usua })
-           <!-- @Html.ActionLink("Delete", "Delete", new { id=item.Id_Usua })-->
+            @Html.ActionLink("Restaurar", "Restaurar", new { id=item.Id_Usua }) 
         </td>
     </tr>
 }

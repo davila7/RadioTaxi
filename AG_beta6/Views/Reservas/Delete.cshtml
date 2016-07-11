@@ -1,0 +1,80 @@
+﻿@model DataLayer6.Reserva
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Reserva</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PatenteVehiculo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatenteVehiculo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_trx)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_trx)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_viaje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_viaje)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dir_origen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dir_origen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dir_destino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dir_destino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Rut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.Rut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Conductor.Dig)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Conductor.Dig)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

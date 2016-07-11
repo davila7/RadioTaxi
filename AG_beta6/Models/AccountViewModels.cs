@@ -49,9 +49,8 @@ namespace AG_beta6.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Correo electrónico")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Nombre de Usuario")]
+        public string Nombre_usr { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

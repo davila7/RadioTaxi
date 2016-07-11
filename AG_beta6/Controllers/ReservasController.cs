@@ -11,112 +11,120 @@ using DataLayer6;
 
 namespace AG_beta6.Controllers
 {
-    public class ClienteController : Controller
+    public class ReservasController : Controller
     {
         private DBControlTaxi db = new DBControlTaxi();
 
-        // GET: Cliente
+        // GET: Reservas
         public async Task<ActionResult> Index()
         {
-            var cliente = db.Cliente.Include(c => c.Empresa);
-            return View(await cliente.ToListAsync());
+            var reserva = db.Reserva.Include(r => r.Cliente).Include(r => r.Conductor);
+            return View(await reserva.ToListAsync());
         }
 
-        // GET: Cliente/Details/5
+        // GET: Reservas/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cliente cliente = await db.Cliente.FindAsync(id);
-            if (cliente == null)
+            Reserva reserva = await db.Reserva.FindAsync(id);
+            if (reserva == null)
             {
                 return HttpNotFound();
             }
-            return View(cliente);
+            return View(reserva);
         }
 
-        // GET: Cliente/Create
+        // GET: Reservas/Create
         public ActionResult Create()
         {
-            ViewBag.IdEmpresa = new SelectList(db.Empresa, "Id_empr", "Nombre");
+            ViewBag.Cliente_Id = new SelectList(db.Cliente, "Id_Clie", "Nombre");
+            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Nombre");
+            ViewBag.PatenteVehiculo = new SelectList(db.Vehiculo, "Patente", "Patente");
             return View();
         }
 
-        // POST: Cliente/Create
+        // POST: Reservas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Rut,Dig,Nombre,Apellidos,Telefono,IdEmpresa,Id_Clie")] Cliente cliente)
+        public async Task<ActionResult> Create([Bind(Include = "Id_Reserva,Cliente_Id,RutConductor,PatenteVehiculo,Fecha_trx,Fecha_viaje,Dir_origen,Dir_destino")] Reserva reserva)
         {
             if (ModelState.IsValid)
             {
-                db.Cliente.Add(cliente);
+                db.Reserva.Add(reserva);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdEmpresa = new SelectList(db.Empresa, "Id_empr", "Rut", cliente.IdEmpresa);
-            return View(cliente);
+            ViewBag.Cliente_Id = new SelectList(db.Cliente, "Id_Clie", "Rut", reserva.Cliente_Id);
+            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Dig", reserva.RutConductor);
+            ViewBag.PatenteVehiculo = new SelectList(db.Vehiculo, "Patente", "Patente", reserva.PatenteVehiculo);
+            return View(reserva);
         }
 
-        // GET: Cliente/Edit/5
+        // GET: Reservas/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cliente cliente = await db.Cliente.FindAsync(id);
-            if (cliente == null)
+            Reserva reserva = await db.Reserva.FindAsync(id);
+            if (reserva == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdEmpresa = new SelectList(db.Empresa, "Id_empr", "Rut", cliente.IdEmpresa);
-            return View(cliente);
+            ViewBag.Cliente_Id = new SelectList(db.Cliente, "Id_Clie", "Rut", reserva.Cliente_Id);
+            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Dig", reserva.RutConductor);
+            ViewBag.PatenteVehiculo = new SelectList(db.Vehiculo, "Patente", "Patente", reserva.PatenteVehiculo);
+            return View(reserva);
         }
 
-        // POST: Cliente/Edit/5
+        // POST: Reservas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Rut,Dig,Nombre,Apellidos,Telefono,IdEmpresa,Id_Clie")] Cliente cliente)
+        public async Task<ActionResult> Edit([Bind(Include = "Id_Reserva,Cliente_Id,RutConductor,PatenteVehiculo,Fecha_trx,Fecha_viaje,Dir_origen,Dir_destino")] Reserva reserva)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cliente).State = EntityState.Modified;
+                db.Entry(reserva).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdEmpresa = new SelectList(db.Empresa, "Id_empr", "Rut", cliente.IdEmpresa);
-            return View(cliente);
+            ViewBag.Cliente_Id = new SelectList(db.Cliente, "Id_Clie", "Rut", reserva.Cliente_Id);
+            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Dig", reserva.RutConductor);
+            ViewBag.PatenteVehiculo = new SelectList(db.Vehiculo, "Patente", "Patente", reserva.PatenteVehiculo);
+            return View(reserva);
         }
 
-        // GET: Cliente/Delete/5
+        // GET: Reservas/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cliente cliente = await db.Cliente.FindAsync(id);
-            if (cliente == null)
+            Reserva reserva = await db.Reserva.FindAsync(id);
+            if (reserva == null)
             {
                 return HttpNotFound();
             }
-            return View(cliente);
+            return View(reserva);
         }
 
-        // POST: Cliente/Delete/5
+        // POST: Reservas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Cliente cliente = await db.Cliente.FindAsync(id);
-            db.Cliente.Remove(cliente);
+            Reserva reserva = await db.Reserva.FindAsync(id);
+            db.Reserva.Remove(reserva);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
