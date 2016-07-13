@@ -144,6 +144,10 @@
     <EntitySetMapping Name="Viaje">
       <EntityTypeMapping TypeName="DBControlTaxiModel.Viaje">
         <MappingFragment StoreEntitySet="Viaje">
+          <ScalarProperty Name="Longitud_ori" ColumnName="Longitud_ori" />
+          <ScalarProperty Name="Latitud_ori" ColumnName="Latitud_ori" />
+          <ScalarProperty Name="Longitud_des" ColumnName="Longitud_des" />
+          <ScalarProperty Name="Latitud_des" ColumnName="Latitud_des" />
           <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
           <ScalarProperty Name="RutConductor" ColumnName="RutConductor" />
           <ScalarProperty Name="IdPasajero" ColumnName="IdPasajero" />

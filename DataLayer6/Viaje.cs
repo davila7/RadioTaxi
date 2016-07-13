@@ -15,8 +15,8 @@ namespace DataLayer6
     public partial class Viaje
     {
         public int Id_viaje { get; set; }
-        public Nullable<int> Origen { get; set; }
-        public Nullable<int> Destino { get; set; }
+        public string Origen { get; set; }
+        public string Destino { get; set; }
         public Nullable<double> Km { get; set; }
         public Nullable<int> Valor { get; set; }
         public Nullable<System.DateTime> HoraInicio { get; set; }
@@ -24,11 +24,13 @@ namespace DataLayer6
         public Nullable<int> IdPasajero { get; set; }
         public string RutConductor { get; set; }
         public int IdEstado { get; set; }
+        public string Latitud_des { get; set; }
+        public string Longitud_des { get; set; }
+        public string Latitud_ori { get; set; }
+        public string Longitud_ori { get; set; }
     
         public virtual Cliente Cliente { get; set; }
         public virtual Conductor Conductor { get; set; }
-        public virtual Direccion Direccion { get; set; }
-        public virtual Direccion Direccion1 { get; set; }
         public virtual estado estado { get; set; }
     }
 }

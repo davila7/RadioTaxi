@@ -1,0 +1,122 @@
+﻿@model DataLayer6.Viaje
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Viaje</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Origen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Origen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Km)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Km)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraTermino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraTermino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitud_des)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitud_des)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitud_des)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitud_des)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitud_ori)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitud_ori)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitud_ori)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitud_ori)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Rut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.Rut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Conductor.Dig)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Conductor.Dig)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_viaje }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

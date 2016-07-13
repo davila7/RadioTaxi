@@ -18,8 +18,6 @@ namespace DataLayer6
         public Direccion()
         {
             this.Empresa = new HashSet<Empresa>();
-            this.Viaje = new HashSet<Viaje>();
-            this.Viaje1 = new HashSet<Viaje>();
             this.Cliente = new HashSet<Cliente>();
         }
     
@@ -30,10 +28,6 @@ namespace DataLayer6
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Empresa> Empresa { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Viaje> Viaje { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Viaje> Viaje1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cliente> Cliente { get; set; }
     }

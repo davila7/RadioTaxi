@@ -143,8 +143,8 @@
       <PropertyRef Name="Id_viaje" />
     </Key>
     <Property Name="Id_viaje" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Origen" Type="int" />
-    <Property Name="Destino" Type="int" />
+    <Property Name="Origen" Type="varchar" MaxLength="250" />
+    <Property Name="Destino" Type="varchar" MaxLength="250" />
     <Property Name="Km" Type="float" />
     <Property Name="Valor" Type="int" />
     <Property Name="HoraInicio" Type="datetime" />
@@ -152,6 +152,10 @@
     <Property Name="IdPasajero" Type="int" />
     <Property Name="RutConductor" Type="nchar" MaxLength="8" Nullable="false" />
     <Property Name="IdEstado" Type="int" Nullable="false" />
+    <Property Name="Latitud_des" Type="varchar" MaxLength="150" />
+    <Property Name="Longitud_des" Type="varchar" MaxLength="150" />
+    <Property Name="Latitud_ori" Type="varchar" MaxLength="150" />
+    <Property Name="Longitud_ori" Type="varchar" MaxLength="150" />
   </EntityType>
   <Association Name="FK_cliente_empresa">
     <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
@@ -297,30 +301,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Viaje_direccion">
-    <End Role="Direccion" Type="Self.Direccion" Multiplicity="0..1" />
-    <End Role="Viaje" Type="Self.Viaje" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Direccion">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Viaje">
-        <PropertyRef Name="Origen" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Viaje_direccion1">
-    <End Role="Direccion" Type="Self.Direccion" Multiplicity="0..1" />
-    <End Role="Viaje" Type="Self.Viaje" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Direccion">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Viaje">
-        <PropertyRef Name="Destino" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Viaje_estado">
     <End Role="estado" Type="Self.estado" Multiplicity="1" />
     <End Role="Viaje" Type="Self.Viaje" Multiplicity="*" />
@@ -393,14 +373,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_Viaje_conductor" Association="Self.FK_Viaje_conductor">
       <End Role="Conductor" EntitySet="Conductor" />
-      <End Role="Viaje" EntitySet="Viaje" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Viaje_direccion" Association="Self.FK_Viaje_direccion">
-      <End Role="Direccion" EntitySet="Direccion" />
-      <End Role="Viaje" EntitySet="Viaje" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Viaje_direccion1" Association="Self.FK_Viaje_direccion1">
-      <End Role="Direccion" EntitySet="Direccion" />
       <End Role="Viaje" EntitySet="Viaje" />
     </AssociationSet>
     <AssociationSet Name="FK_Viaje_estado" Association="Self.FK_Viaje_estado">

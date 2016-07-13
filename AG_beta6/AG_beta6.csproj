@@ -169,6 +169,7 @@
     <Compile Include="Controllers\ReservasController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
+    <Compile Include="Controllers\ViajesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -282,9 +283,15 @@
     <Content Include="Views\Reservas\Details.cshtml" />
     <Content Include="Views\Reservas\Edit.cshtml" />
     <Content Include="Views\Reservas\Index.cshtml" />
+    <Content Include="Views\Viajes\Create.cshtml" />
+    <Content Include="Views\Viajes\Delete.cshtml" />
+    <Content Include="Views\Viajes\Details.cshtml" />
+    <Content Include="Views\Viajes\Edit.cshtml" />
+    <Content Include="Views\Viajes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Backups\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

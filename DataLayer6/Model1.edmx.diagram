@@ -5,18 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a362f2b0b6ea4ac8a7eb564f6aae9f4f" Name="Diagram1" ZoomLevel="62">
-        <EntityTypeShape EntityType="DBControlTaxiModel.Cliente" Width="1.5" PointX="3.75" PointY="12.875" />
-        <EntityTypeShape EntityType="DBControlTaxiModel.Conductor" Width="1.5" PointX="0.75" PointY="7.5" />
-        <EntityTypeShape EntityType="DBControlTaxiModel.Conductor_vehiculo" Width="1.5" PointX="6" PointY="8.25" />
-        <EntityTypeShape EntityType="DBControlTaxiModel.Direccion" Width="1.5" PointX="1.5" PointY="17.25" />
-        <EntityTypeShape EntityType="DBControlTaxiModel.Empresa" Width="1.5" PointX="1.5" PointY="13" />
-        <EntityTypeShape EntityType="DBControlTaxiModel.estado" Width="1.5" PointX="3.75" PointY="4.625" />
-        <EntityTypeShape EntityType="DBControlTaxiModel.Perfil" Width="1.5" PointX="8.75" PointY="4.375" />
-        <EntityTypeShape EntityType="DBControlTaxiModel.Reserva" Width="1.5" PointX="3" PointY="7.25" />
-        <EntityTypeShape EntityType="DBControlTaxiModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="3" />
-        <EntityTypeShape EntityType="DBControlTaxiModel.Usuario" Width="1.5" PointX="11" PointY="3.25" />
-        <EntityTypeShape EntityType="DBControlTaxiModel.Vehiculo" Width="1.5" PointX="3.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DBControlTaxiModel.Viaje" Width="1.5" PointX="6" PointY="3.25" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Cliente" Width="1.5" PointX="0.75" PointY="6.25" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Conductor" Width="1.5" PointX="3.75" PointY="1.25" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Conductor_vehiculo" Width="1.5" PointX="8" PointY="10.75" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Direccion" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Empresa" Width="1.5" PointX="5.25" PointY="11.375" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.estado" Width="1.5" PointX="0.75" PointY="3" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Perfil" Width="1.5" PointX="8.75" PointY="2.125" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Reserva" Width="1.5" PointX="6" PointY="5.875" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Usuario" Width="1.5" PointX="11" PointY="1" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Vehiculo" Width="1.5" PointX="3.75" PointY="15.375" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Viaje" Width="1.5" PointX="3" PointY="5.625" />
         <AssociationConnector Association="DBControlTaxiModel.FK_cliente_empresa" />
         <AssociationConnector Association="DBControlTaxiModel.FK_Reserva_Cliente" />
         <AssociationConnector Association="DBControlTaxiModel.FK_Viaje_cliente" />
@@ -25,8 +25,6 @@
         <AssociationConnector Association="DBControlTaxiModel.FK_Viaje_conductor" />
         <AssociationConnector Association="DBControlTaxiModel.FK_conductor_vehiculo_Vehiculo" />
         <AssociationConnector Association="DBControlTaxiModel.FK_empresa_direccion" />
-        <AssociationConnector Association="DBControlTaxiModel.FK_Viaje_direccion" />
-        <AssociationConnector Association="DBControlTaxiModel.FK_Viaje_direccion1" />
         <AssociationConnector Association="DBControlTaxiModel.FK_Viaje_estado" />
         <AssociationConnector Association="DBControlTaxiModel.FK_Usuario_Perfil1" />
         <AssociationConnector Association="DBControlTaxiModel.FK_Reserva_Vehiculo" />
