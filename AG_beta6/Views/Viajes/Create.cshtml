@@ -165,6 +165,11 @@
             }
         }
 
+        var lat_des = 0;
+        var lng_des = 0;
+        var lat_ori = 0;
+        var lng_ori = 0;
+
         origin_autocomplete.addListener('place_changed', function () {
             var place = origin_autocomplete.getPlace();
             if (!place.geometry) {
@@ -172,6 +177,11 @@
                 return;
             }
             expandViewportToFitPlace(map, place);
+
+            lat_ori = place.geometry.location.lat();
+            lng_ori = place.geometry.location.lng();
+            $('#Latitud_des').val(lat_ori);
+            $('#Longitud_des').val(lng_ori);
 
             // If the place has a geometry, store its place ID and route if we have
             // the other place ID
@@ -187,12 +197,22 @@
                 return;
             }
             expandViewportToFitPlace(map, place);
+            lat_des = place.geometry.location.lat();
+            lng_des = place.geometry.location.lng();
+            $('#Latitud_ori').val(lat_des);
+            $('#Longitud_ori').val(lng_des);
 
             // If the place has a geometry, store its place ID and route if we have
             // the other place ID
             destination_place_id = place.place_id;
             route(origin_place_id, destination_place_id, travel_mode,
                   directionsService, directionsDisplay);
+
+            var p1 = new google.maps.LatLng(lat_des, lng_des);
+            var p2 = new google.maps.LatLng(lat_ori, lng_ori);
+            console.log(p1);
+            console.log(p2);
+            $('#Km').val(calcDistance(p1, p2));
         });
 
         function route(origin_place_id, destination_place_id, travel_mode,
@@ -213,8 +233,13 @@
             });
         }
     }
+
+    //calculates distance between two points in km's
+    function calcDistance(p1, p2) {
+        return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
+    }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAclk8AuFL14AjTXEX3Jbjxo38qUkJ9ynQ&signed_in=true&libraries=places&callback=initMap"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAclk8AuFL14AjTXEX3Jbjxo38qUkJ9ynQ&libraries=places,geometry&callback=initMap"
         async defer></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
