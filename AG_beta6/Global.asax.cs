@@ -21,5 +21,13 @@ namespace AG_beta6
 
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
         }
+
+        protected void RegisterGlobalFilters(GlobalFilterCollection filters)
+        {
+            filters.Add(new HandleErrorAttribute());
+            filters.Add(new System.Web.Mvc.AuthorizeAttribute());
+        }
+
+
     }
 }

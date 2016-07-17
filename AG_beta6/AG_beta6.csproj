@@ -163,10 +163,12 @@
     <Compile Include="Controllers\ConductorController.cs" />
     <Compile Include="Controllers\Conductor_vehiculoController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
+    <Compile Include="Controllers\EstadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\ReservasController.cs" />
+    <Compile Include="Controllers\TarifasController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
     <Compile Include="Controllers\ViajesController.cs" />
@@ -288,6 +290,16 @@
     <Content Include="Views\Viajes\Details.cshtml" />
     <Content Include="Views\Viajes\Edit.cshtml" />
     <Content Include="Views\Viajes\Index.cshtml" />
+    <Content Include="Views\Tarifas\Create.cshtml" />
+    <Content Include="Views\Tarifas\Delete.cshtml" />
+    <Content Include="Views\Tarifas\Details.cshtml" />
+    <Content Include="Views\Tarifas\Edit.cshtml" />
+    <Content Include="Views\Tarifas\Index.cshtml" />
+    <Content Include="Views\Estados\Create.cshtml" />
+    <Content Include="Views\Estados\Delete.cshtml" />
+    <Content Include="Views\Estados\Details.cshtml" />
+    <Content Include="Views\Estados\Edit.cshtml" />
+    <Content Include="Views\Estados\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

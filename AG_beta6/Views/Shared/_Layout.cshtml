@@ -39,42 +39,86 @@
                 <li>
                     @Html.ActionLink("Inicio", "Index", "Home")
                 </li>
-                <li>
-                    @Html.ActionLink("Usuarios", "Index", "Usuario")
-                </li>
-                <li>
-                    @Html.ActionLink("Perfiles", "Index", "Perfil")
-                </li>
-                <li>
-                    @Html.ActionLink("Clientes", "Index", "Cliente")
-                </li>
-                <li>
-                    @Html.ActionLink("Empresas", "Index", "Empresa")
-                </li>
-                <li>
-                    @Html.ActionLink("Chofer", "Index", "Conductor")
-                </li>
-                <li>
-                    @Html.ActionLink("Vehículos", "Index", "Vehiculo")
-                </li>
-                <li>
-                    @Html.ActionLink("Reservas", "Index", "Reservas")
-                </li>
-                <li>
-                    @Html.ActionLink("Viajes", "Index", "Viajes")
-                </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.Identity.Name == "Admin")
+                    { 
+                        <li>
+                            @Html.ActionLink("Usuarios", "Index", "Usuario")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Perfiles", "Index", "Perfil")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Clientes", "Index", "Cliente")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Empresas", "Index", "Empresa")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Tarifas", "Index", "Tarifas")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Chofer", "Index", "Conductor")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Vehículos", "Index", "Vehiculo")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Reservas", "Index", "Reservas")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Viajes", "Index", "Viajes")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Estados", "Index", "Estados")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Conducto-Vehiculo", "Index", "Conductor_vehiculo")
+                        </li>
+                    }
+                    if (User.Identity.Name == "Operador")
+                    {
+                        <li>
+                            @Html.ActionLink("Clientes", "Index", "Cliente")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Empresas", "Index", "Empresa")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Chofer", "Index", "Conductor")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Vehículos", "Index", "Vehiculo")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Reservas", "Index", "Reservas")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Viajes", "Index", "Viajes")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Estados", "Index", "Estados")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Conducto-Vehiculo", "Index", "Conductor_vehiculo")
+                        </li>
+                    }
+
+                }
                 <li>
                     @Html.ActionLink("Acerca de", "About", "Home")
                 </li>
                 <li>
                     @Html.ActionLink("Contacto", "Contact", "Home")
                 </li>
-                <li>
-                    @Html.ActionLink("Conducto-Vehiculo", "Index", "Conductor_vehiculo")
-                </li>
+               
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
         <div id="page-content-wrapper">
             <div class="container-fluid body-content">
                 @RenderBody()
@@ -85,9 +129,6 @@
             </div>
         </div>
    </div>
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
     <script>
         $("#menu-toggle").click(function (e) {
             if ($("#wrapper").hasClass("toggled")) {
@@ -100,7 +141,12 @@
         });
 
         $(function () {
-            $('.datetimepicker').datetimepicker();
+            $('.datetimepicker').datetimepicker({
+               format: 'YYYY-MM-DD'
+            });
+            $('.timepicker').datetimepicker({
+                format: 'HH:mm'
+            });
         });
     </script>
 </body>

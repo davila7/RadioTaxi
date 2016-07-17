@@ -63,6 +63,7 @@
     <Property Name="Telefono" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Descuento" Type="int" />
     <Property Name="FormaDePago" Type="varchar" MaxLength="50" />
+    <Property Name="Tarifa_id" Type="int" />
     <Property Name="IdDireccion" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="estado">
@@ -106,6 +107,15 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <EntityType Name="Tarifa">
+    <Key>
+      <PropertyRef Name="Id_Tarifa" />
+    </Key>
+    <Property Name="Id_Tarifa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Desc_Tarifa" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Valor_bndra" Type="int" Nullable="false" />
+    <Property Name="Valor_mts" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Usuario">
     <Key>
       <PropertyRef Name="Id_Usua" />
@@ -147,8 +157,8 @@
     <Property Name="Destino" Type="varchar" MaxLength="250" />
     <Property Name="Km" Type="float" />
     <Property Name="Valor" Type="int" />
-    <Property Name="HoraInicio" Type="datetime" />
-    <Property Name="HoraTermino" Type="datetime" />
+    <Property Name="FechaInicio" Type="date" Nullable="false" />
+    <Property Name="FechaTermino" Type="date" Nullable="false" />
     <Property Name="IdPasajero" Type="int" />
     <Property Name="RutConductor" Type="nchar" MaxLength="8" Nullable="false" />
     <Property Name="IdEstado" Type="int" Nullable="false" />
@@ -156,6 +166,10 @@
     <Property Name="Longitud_des" Type="varchar" MaxLength="150" />
     <Property Name="Latitud_ori" Type="varchar" MaxLength="150" />
     <Property Name="Longitud_ori" Type="varchar" MaxLength="150" />
+    <Property Name="HoraIni" Type="varchar" MaxLength="10" />
+    <Property Name="HoraTer" Type="varchar" MaxLength="10" />
+    <Property Name="Valor_bndra" Type="int" />
+    <Property Name="Valor_mts" Type="int" />
   </EntityType>
   <Association Name="FK_cliente_empresa">
     <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
@@ -226,6 +240,18 @@
       </Principal>
       <Dependent Role="Empresa">
         <PropertyRef Name="IdDireccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Empresa_Tarifa">
+    <End Role="Tarifa" Type="Self.Tarifa" Multiplicity="0..1" />
+    <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tarifa">
+        <PropertyRef Name="Id_Tarifa" />
+      </Principal>
+      <Dependent Role="Empresa">
+        <PropertyRef Name="Tarifa_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -324,6 +350,7 @@
     <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tarifa" EntityType="Self.Tarifa" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Vehiculo" EntityType="Self.Vehiculo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Viaje" EntityType="Self.Viaje" Schema="dbo" store:Type="Tables" />
@@ -349,6 +376,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_empresa_direccion" Association="Self.FK_empresa_direccion">
       <End Role="Direccion" EntitySet="Direccion" />
+      <End Role="Empresa" EntitySet="Empresa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Empresa_Tarifa" Association="Self.FK_Empresa_Tarifa">
+      <End Role="Tarifa" EntitySet="Tarifa" />
       <End Role="Empresa" EntitySet="Empresa" />
     </AssociationSet>
     <AssociationSet Name="FK_Reserva_Cliente" Association="Self.FK_Reserva_Cliente">

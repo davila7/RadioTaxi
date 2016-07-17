@@ -1,0 +1,42 @@
+﻿@model DataLayer6.Tarifa
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tarifa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Desc_Tarifa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Desc_Tarifa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor_bndra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor_bndra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor_mts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor_mts)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Tarifa }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

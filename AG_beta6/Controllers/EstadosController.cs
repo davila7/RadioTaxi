@@ -11,116 +11,107 @@ using DataLayer6;
 
 namespace AG_beta6.Controllers
 {
-    public class EmpresaController : Controller
+    public class EstadosController : Controller
     {
         private DBControlTaxi db = new DBControlTaxi();
 
-        // GET: Empresa
+        // GET: Estados
         public async Task<ActionResult> Index()
         {
-            var empresa = db.Empresa.Include(e => e.Direccion).Include(t => t.Tarifa);
-            return View(await empresa.ToListAsync());
+            return View(await db.estado.ToListAsync());
         }
 
-        // GET: Empresa/Details/5
+        // GET: Estados/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empresa empresa = await db.Empresa.FindAsync(id);
-            if (empresa == null)
+            estado estado = await db.estado.FindAsync(id);
+            if (estado == null)
             {
                 return HttpNotFound();
             }
-            return View(empresa);
+            return View(estado);
         }
 
-        // GET: Empresa/Create
+        // GET: Estados/Create
         public ActionResult Create()
         {
-            ViewBag.IdDireccion = new SelectList(db.Direccion, "Id", "Nombre");
-            ViewBag.IdTarifa = new SelectList(db.Tarifa, "Id_Tarifa", "Desc_tarifa");
             return View();
         }
 
-        // POST: Empresa/Create
+        // POST: Estados/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id_empr,Rut,Dig,Nombre,Telefono,Descuento,FormaDePago,IdDireccion,IdTarifa")] Empresa empresa)
+        public async Task<ActionResult> Create([Bind(Include = "Id_Estado,Nombre")] estado estado)
         {
             if (ModelState.IsValid)
             {
-                db.Empresa.Add(empresa);
+                db.estado.Add(estado);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdDireccion = new SelectList(db.Direccion, "Id", "Nombre", empresa.IdDireccion);
-            ViewBag.IdTarifa = new SelectList(db.Tarifa, "Id_Tarifa", "Desc_tarifa", empresa.Tarifa_id);
-            return View(empresa);
+            return View(estado);
         }
 
-        // GET: Empresa/Edit/5
+        // GET: Estados/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empresa empresa = await db.Empresa.FindAsync(id);
-            if (empresa == null)
+            estado estado = await db.estado.FindAsync(id);
+            if (estado == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdDireccion = new SelectList(db.Direccion, "Id", "Nombre", empresa.IdDireccion);
-            ViewBag.IdTarifa = new SelectList(db.Tarifa, "Id_Tarifa", "Desc_tarifa", empresa.Tarifa_id);
-            return View(empresa);
+            return View(estado);
         }
 
-        // POST: Empresa/Edit/5
+        // POST: Estados/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id_empr,Rut,Dig,Nombre,Telefono,Descuento,FormaDePago,IdDireccion,IdTarifa")] Empresa empresa)
+        public async Task<ActionResult> Edit([Bind(Include = "Id_Estado,Nombre")] estado estado)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(empresa).State = EntityState.Modified;
+                db.Entry(estado).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdDireccion = new SelectList(db.Direccion, "Id", "Nombre", empresa.IdDireccion);
-            ViewBag.IdTarifa = new SelectList(db.Tarifa, "Id_Tarifa", "Desc_tarifa", empresa.Tarifa_id);
-            return View(empresa);
+            return View(estado);
         }
 
-        // GET: Empresa/Delete/5
+        // GET: Estados/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empresa empresa = await db.Empresa.FindAsync(id);
-            if (empresa == null)
+            estado estado = await db.estado.FindAsync(id);
+            if (estado == null)
             {
                 return HttpNotFound();
             }
-            return View(empresa);
+            return View(estado);
         }
 
-        // POST: Empresa/Delete/5
+        // POST: Estados/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Empresa empresa = await db.Empresa.FindAsync(id);
-            db.Empresa.Remove(empresa);
+            estado estado = await db.estado.FindAsync(id);
+            db.estado.Remove(estado);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

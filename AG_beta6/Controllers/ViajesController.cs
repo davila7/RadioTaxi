@@ -37,12 +37,29 @@ namespace AG_beta6.Controllers
             return View(viaje);
         }
 
+        // POST: Json Valor Empresa
+        [HttpPost]
+        public ActionResult GetValorTarifa(int? IdPasajero)
+        {
+            if (IdPasajero != null)
+            {
+                int valor_bndra = db.Cliente.Find(IdPasajero).Empresa.Tarifa.Valor_bndra;
+                int valor_mtr = db.Cliente.Find(IdPasajero).Empresa.Tarifa.Valor_mts;
+                int[] valores = new int[] { valor_bndra, valor_mtr };
+                return Json(valores);
+            }
+            else
+            {
+                return Json("An Error Has occoured");
+            }
+        }
+
         // GET: Viajes/Create
         public ActionResult Create()
         {
-            ViewBag.IdPasajero = new SelectList(db.Cliente, "Id_Clie", "Rut");
-            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Dig");
-            ViewBag.IdEstado = new SelectList(db.estado, "Id_Estado", "Nombre");
+            ViewBag.IdPasajero = new SelectList(db.Cliente, "Id_Clie", "Nombre", "Seleccione un pasajero");
+            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Nombre", "Seleccione un conductor");
+            ViewBag.IdEstado = new SelectList(db.estado, "Id_Estado", "Nombre", "Seleccione un estado");
             return View();
         }
 
@@ -51,7 +68,7 @@ namespace AG_beta6.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id_viaje,Origen,Destino,Km,Valor,HoraInicio,HoraTermino,IdPasajero,RutConductor,IdEstado,Latitud_des,Longitud_des,Latitud_ori,Longitud_ori")] Viaje viaje)
+        public async Task<ActionResult> Create([Bind(Include = "Id_viaje,Origen,Destino,Km,Valor,Valor_bndra,Valor_mts,FechaInicio,HoraIni,FechaTermino,HoraTer,IdPasajero,RutConductor,IdEstado,Latitud_des,Longitud_des,Latitud_ori,Longitud_ori")] Viaje viaje)
         {
             if (ModelState.IsValid)
             {
@@ -78,8 +95,8 @@ namespace AG_beta6.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IdPasajero = new SelectList(db.Cliente, "Id_Clie", "Rut", viaje.IdPasajero);
-            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Dig", viaje.RutConductor);
+            ViewBag.IdPasajero = new SelectList(db.Cliente, "Id_Clie", "Nombre", viaje.IdPasajero);
+            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Nombre", viaje.RutConductor);
             ViewBag.IdEstado = new SelectList(db.estado, "Id_Estado", "Nombre", viaje.IdEstado);
             return View(viaje);
         }
@@ -89,7 +106,7 @@ namespace AG_beta6.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id_viaje,Origen,Destino,Km,Valor,HoraInicio,HoraTermino,IdPasajero,RutConductor,IdEstado,Latitud_des,Longitud_des,Latitud_ori,Longitud_ori")] Viaje viaje)
+        public async Task<ActionResult> Edit([Bind(Include = "Id_viaje,Origen,Destino,Km,Valor,Valor_bndra,Valor_mts,FechaInicio,HoraIni,FechaTermino,HoraTer,IdPasajero,RutConductor,IdEstado,Latitud_des,Longitud_des,Latitud_ori,Longitud_ori")] Viaje viaje)
         {
             if (ModelState.IsValid)
             {
@@ -97,8 +114,8 @@ namespace AG_beta6.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdPasajero = new SelectList(db.Cliente, "Id_Clie", "Rut", viaje.IdPasajero);
-            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Dig", viaje.RutConductor);
+            ViewBag.IdPasajero = new SelectList(db.Cliente, "Id_Clie", "Nombre", viaje.IdPasajero);
+            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Nombre", viaje.RutConductor);
             ViewBag.IdEstado = new SelectList(db.estado, "Id_Estado", "Nombre", viaje.IdEstado);
             return View(viaje);
         }

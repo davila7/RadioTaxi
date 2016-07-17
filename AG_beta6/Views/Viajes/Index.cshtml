@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Lista Viajes</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo Viaje", "Create")
 </p>
 <table class="table">
     <tr>
@@ -24,31 +24,25 @@
             @Html.DisplayNameFor(model => model.Valor)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HoraInicio)
+            Fecha Inicio
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HoraTermino)
+            Hora Inicio
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Latitud_des)
+            Fecha Termino
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Longitud_des)
+            Hora Termino
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Latitud_ori)
+            Cliente
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Longitud_ori)
+            Conductor
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cliente.Rut)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Conductor.Dig)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estado.Nombre)
+           Estado
         </th>
         <th></th>
     </tr>
@@ -62,41 +56,34 @@
             @Html.DisplayFor(modelItem => item.Destino)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Km)
+            @Html.DisplayFor(modelItem => item.KilometerDisplay)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Valor)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HoraInicio)
+            @Html.ValueFor(modelItem => item.FechaInicio, "{0:dd/MM/yyyy}")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HoraTermino)
+            @Html.DisplayFor(modelItem => item.HoraIni)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Latitud_des)
+            @Html.ValueFor(modelItem => item.FechaTermino, "{0:dd/MM/yyyy}")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Longitud_des)
+            @Html.DisplayFor(modelItem => item.HoraTer)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Latitud_ori)
+            @Html.DisplayFor(modelItem => item.Cliente.Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Longitud_ori)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cliente.Rut)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Conductor.Dig)
+            @Html.DisplayFor(modelItem => item.Conductor.Nombre)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.estado.Nombre)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id_viaje }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_viaje }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id_viaje })
         </td>
     </tr>

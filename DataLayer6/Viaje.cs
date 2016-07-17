@@ -11,16 +11,18 @@ namespace DataLayer6
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Viaje
     {
         public int Id_viaje { get; set; }
         public string Origen { get; set; }
         public string Destino { get; set; }
+        [DisplayFormat(DataFormatString = "{0:0.00}")]
         public Nullable<double> Km { get; set; }
         public Nullable<int> Valor { get; set; }
-        public Nullable<System.DateTime> HoraInicio { get; set; }
-        public Nullable<System.DateTime> HoraTermino { get; set; }
+        public System.DateTime FechaInicio { get; set; }
+        public System.DateTime FechaTermino { get; set; }
         public Nullable<int> IdPasajero { get; set; }
         public string RutConductor { get; set; }
         public int IdEstado { get; set; }
@@ -28,7 +30,18 @@ namespace DataLayer6
         public string Longitud_des { get; set; }
         public string Latitud_ori { get; set; }
         public string Longitud_ori { get; set; }
-    
+        public string HoraIni { get; set; }
+        public string HoraTer { get; set; }
+        public Nullable<int> Valor_bndra { get; set; }
+        public Nullable<int> Valor_mts { get; set; }
+
+        public string KilometerDisplay
+        {
+            get
+            {
+                return String.Format("{0:0.00} km", this.Km);
+            }
+        }
         public virtual Cliente Cliente { get; set; }
         public virtual Conductor Conductor { get; set; }
         public virtual estado estado { get; set; }

@@ -52,6 +52,7 @@
       <EntityTypeMapping TypeName="DBControlTaxiModel.Empresa">
         <MappingFragment StoreEntitySet="Empresa">
           <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="Tarifa_id" ColumnName="Tarifa_id" />
           <ScalarProperty Name="FormaDePago" ColumnName="FormaDePago" />
           <ScalarProperty Name="Descuento" ColumnName="Descuento" />
           <ScalarProperty Name="Telefono" ColumnName="Telefono" />
@@ -107,6 +108,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Tarifa">
+      <EntityTypeMapping TypeName="DBControlTaxiModel.Tarifa">
+        <MappingFragment StoreEntitySet="Tarifa">
+          <ScalarProperty Name="Valor_mts" ColumnName="Valor_mts" />
+          <ScalarProperty Name="Valor_bndra" ColumnName="Valor_bndra" />
+          <ScalarProperty Name="Desc_Tarifa" ColumnName="Desc_Tarifa" />
+          <ScalarProperty Name="Id_Tarifa" ColumnName="Id_Tarifa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Usuario">
       <EntityTypeMapping TypeName="DBControlTaxiModel.Usuario">
         <MappingFragment StoreEntitySet="Usuario">
@@ -144,6 +155,10 @@
     <EntitySetMapping Name="Viaje">
       <EntityTypeMapping TypeName="DBControlTaxiModel.Viaje">
         <MappingFragment StoreEntitySet="Viaje">
+          <ScalarProperty Name="Valor_mts" ColumnName="Valor_mts" />
+          <ScalarProperty Name="Valor_bndra" ColumnName="Valor_bndra" />
+          <ScalarProperty Name="HoraTer" ColumnName="HoraTer" />
+          <ScalarProperty Name="HoraIni" ColumnName="HoraIni" />
           <ScalarProperty Name="Longitud_ori" ColumnName="Longitud_ori" />
           <ScalarProperty Name="Latitud_ori" ColumnName="Latitud_ori" />
           <ScalarProperty Name="Longitud_des" ColumnName="Longitud_des" />
@@ -151,8 +166,8 @@
           <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
           <ScalarProperty Name="RutConductor" ColumnName="RutConductor" />
           <ScalarProperty Name="IdPasajero" ColumnName="IdPasajero" />
-          <ScalarProperty Name="HoraTermino" ColumnName="HoraTermino" />
-          <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+          <ScalarProperty Name="FechaTermino" ColumnName="FechaTermino" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
           <ScalarProperty Name="Valor" ColumnName="Valor" />
           <ScalarProperty Name="Km" ColumnName="Km" />
           <ScalarProperty Name="Destino" ColumnName="Destino" />

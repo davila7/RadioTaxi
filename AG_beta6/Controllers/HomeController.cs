@@ -10,7 +10,16 @@ namespace AG_beta6.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+             return View();
+            /*if (User.Identity.IsAuthenticated)
+            {
+               
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }*/
+            
         }
 
         public ActionResult About()

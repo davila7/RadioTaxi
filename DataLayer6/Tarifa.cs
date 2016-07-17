@@ -12,27 +12,20 @@ namespace DataLayer6
     using System;
     using System.Collections.Generic;
     
-    public partial class Empresa
+    public partial class Tarifa
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Empresa()
+        public Tarifa()
         {
-            this.Cliente = new HashSet<Cliente>();
+            this.Empresa = new HashSet<Empresa>();
         }
     
-        public int Id_empr { get; set; }
-        public string Rut { get; set; }
-        public string Dig { get; set; }
-        public string Nombre { get; set; }
-        public string Telefono { get; set; }
-        public Nullable<int> Descuento { get; set; }
-        public string FormaDePago { get; set; }
-        public Nullable<int> Tarifa_id { get; set; }
-        public int IdDireccion { get; set; }
+        public int Id_Tarifa { get; set; }
+        public string Desc_Tarifa { get; set; }
+        public int Valor_bndra { get; set; }
+        public int Valor_mts { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cliente> Cliente { get; set; }
-        public virtual Direccion Direccion { get; set; }
-        public virtual Tarifa Tarifa { get; set; }
+        public virtual ICollection<Empresa> Empresa { get; set; }
     }
 }
