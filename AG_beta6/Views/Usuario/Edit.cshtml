@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Editar</h2>
 
 
 @using (Html.BeginForm())
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Dig, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Digito</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Dig, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Dig, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Nombre_usr, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Nombre Usuario</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Nombre_usr, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Nombre_usr, "", new { @class = "text-danger" })
@@ -56,7 +56,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Ape_pat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Apellido Paterno</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Ape_pat, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Ape_pat, "", new { @class = "text-danger" })
@@ -64,7 +64,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Ape_mat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Apellido Materno</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Ape_mat, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Ape_mat, "", new { @class = "text-danger" })
@@ -88,7 +88,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Flg_hab, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Habilitado</label>
             <div class="col-md-10">
                 @Html.CheckBoxFor(model => model.Flg_hab)
                 @Html.ValidationMessageFor(model => model.Flg_hab, "", new { @class = "text-danger" })
@@ -96,7 +96,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Flg_elim, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Eliminado</label>
             <div class="col-md-10">
                 @Html.CheckBoxFor(model => model.Flg_elim)
                 @Html.ValidationMessageFor(model => model.Flg_elim, "", new { @class = "text-danger" })
@@ -104,7 +104,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Contrasenha, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Constraseña</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Contrasenha, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Contrasenha, "", new { @class = "text-danger" })
@@ -112,7 +112,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Id_Pefil, "Id_Pefil", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Perfil</label>
             <div class="col-md-10">
                 @Html.DropDownList("Id_Pefil", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Id_Pefil, "", new { @class = "text-danger" })
@@ -130,7 +130,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la lista", "Index")
 </div>
 
 @section Scripts {

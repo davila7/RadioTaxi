@@ -64,7 +64,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdDireccion, "IdDireccion", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="Pasajero">Dirección</label>
             <div class="col-md-10">
                 @Html.DropDownList("IdDireccion", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdDireccion, "", new { @class = "text-danger" })
@@ -72,7 +72,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Tarifa_id, "IdTarifa", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="Pasajero">Tarifa</label>
             <div class="col-md-10">
                 @Html.DropDownList("IdTarifa", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Tarifa_id, "", new { @class = "text-danger" })
@@ -90,7 +90,11 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
+<script>
+    $(function () {
+        $('#IdTarifa').attr('name', 'Tarifa_id');
+    });
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

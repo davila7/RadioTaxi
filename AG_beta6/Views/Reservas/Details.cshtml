@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Fecha_trx)
+           Fecha Transacción
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Fecha_viaje)
+            Fecha Viaje
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Dir_origen)
+            Origen
         </dt>
 
         <dd>
@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Dir_destino)
+           Destino
         </dt>
 
         <dd>
@@ -51,21 +51,28 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Cliente.Rut)
+            Cliente
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Cliente.Rut)
+            @Html.DisplayFor(model => model.Cliente.Nombre)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Conductor.Dig)
+           Conductor
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Conductor.Dig)
+            @Html.DisplayFor(model => model.Conductor.Nombre)
         </dd>
 
+        <dt>
+            Pendiente
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pendiente)
+        </dd>
     </dl>
 </div>
 <p>

@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Patente)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Dig)
         </th>
         <th>
@@ -29,14 +32,14 @@
         <th>
             @Html.DisplayNameFor(model => model.KmLt)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Id_Vehi)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patente)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Dig)
         </td>
@@ -56,12 +59,10 @@
             @Html.DisplayFor(modelItem => item.KmLt)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Id_Vehi)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Patente }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.Patente }) |
-            @Html.ActionLink("Borrar", "Delete", new { id=item.Patente })
+            
+               @Html.ActionLink("Editar", "Edit", new { id = item.Patente }) |
+               @Html.ActionLink("Detalles", "Details", new { id = item.Patente }) |
+               @Html.ActionLink("Borrar", "Delete", new { id = item.Patente })})
         </td>
     </tr>
 }

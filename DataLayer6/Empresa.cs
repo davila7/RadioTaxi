@@ -11,6 +11,7 @@ namespace DataLayer6
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
     public partial class Empresa
     {
@@ -22,10 +23,12 @@ namespace DataLayer6
     
         public int Id_empr { get; set; }
         public string Rut { get; set; }
+        [DisplayName("Digito")]
         public string Dig { get; set; }
         public string Nombre { get; set; }
         public string Telefono { get; set; }
         public Nullable<int> Descuento { get; set; }
+        [DisplayName("Forma de Pago")]
         public string FormaDePago { get; set; }
         public Nullable<int> Tarifa_id { get; set; }
         public int IdDireccion { get; set; }

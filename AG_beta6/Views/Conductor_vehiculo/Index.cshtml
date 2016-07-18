@@ -12,13 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Id_cond_vehi)
+            Conductor
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Conductor.Dig)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Vehiculo.Dig)
+            Vechiculo
         </th>
         <th></th>
     </tr>
@@ -26,18 +23,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Id_cond_vehi)
+            @Html.DisplayFor(modelItem => item.Conductor.Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Conductor.Dig)
+            @Html.DisplayFor(modelItem => item.Vehiculo.Patente)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Vehiculo.Dig)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new {  id=item.Id_cond_vehi }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id_cond_vehi }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id_cond_vehi })
         </td>
     </tr>
 }

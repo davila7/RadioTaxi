@@ -11,6 +11,7 @@ namespace DataLayer6
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
     public partial class Tarifa
     {
@@ -21,8 +22,11 @@ namespace DataLayer6
         }
     
         public int Id_Tarifa { get; set; }
+        [DisplayName("Tarifa")]
         public string Desc_Tarifa { get; set; }
+        [DisplayName("Valor Bandera")]
         public int Valor_bndra { get; set; }
+        [DisplayName("Valor Metros")]
         public int Valor_mts { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

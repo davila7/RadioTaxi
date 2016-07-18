@@ -12,25 +12,25 @@
         <EntityTypeShape EntityType="DBControlTaxiModel.Empresa" Width="1.5" PointX="3" PointY="6.125" />
         <EntityTypeShape EntityType="DBControlTaxiModel.estado" Width="1.5" PointX="5.25" PointY="3" />
         <EntityTypeShape EntityType="DBControlTaxiModel.Perfil" Width="1.5" PointX="0.75" PointY="12.125" />
-        <EntityTypeShape EntityType="DBControlTaxiModel.Reserva" Width="1.5" PointX="10.5" PointY="5.875" />
         <EntityTypeShape EntityType="DBControlTaxiModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="DBControlTaxiModel.Tarifa" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="DBControlTaxiModel.Usuario" Width="1.5" PointX="3" PointY="11" />
         <EntityTypeShape EntityType="DBControlTaxiModel.Vehiculo" Width="1.5" PointX="8.25" PointY="1.25" />
         <EntityTypeShape EntityType="DBControlTaxiModel.Viaje" Width="1.5" PointX="7.5" PointY="5.25" />
         <AssociationConnector Association="DBControlTaxiModel.FK_cliente_empresa" />
-        <AssociationConnector Association="DBControlTaxiModel.FK_Reserva_Cliente" />
         <AssociationConnector Association="DBControlTaxiModel.FK_Viaje_cliente" />
         <AssociationConnector Association="DBControlTaxiModel.FK_conductor_vehiculo_conductor" />
-        <AssociationConnector Association="DBControlTaxiModel.FK_Reserva_Conductor" />
         <AssociationConnector Association="DBControlTaxiModel.FK_Viaje_conductor" />
         <AssociationConnector Association="DBControlTaxiModel.FK_conductor_vehiculo_Vehiculo" />
         <AssociationConnector Association="DBControlTaxiModel.FK_empresa_direccion" />
         <AssociationConnector Association="DBControlTaxiModel.FK_Empresa_Tarifa" />
         <AssociationConnector Association="DBControlTaxiModel.FK_Viaje_estado" />
         <AssociationConnector Association="DBControlTaxiModel.FK_Usuario_Perfil1" />
-        <AssociationConnector Association="DBControlTaxiModel.FK_Reserva_Vehiculo" />
         <AssociationConnector Association="DBControlTaxiModel.Cliente_Direccion" />
+        <EntityTypeShape EntityType="DBControlTaxiModel.Reserva" Width="1.5" PointX="10.5" PointY="6.25" />
+        <AssociationConnector Association="DBControlTaxiModel.FK_Reserva_Cliente" />
+        <AssociationConnector Association="DBControlTaxiModel.FK_Reserva_Conductor" />
+        <AssociationConnector Association="DBControlTaxiModel.FK_Reserva_Vehiculo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

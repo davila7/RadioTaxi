@@ -96,6 +96,7 @@
     <Property Name="Lng_destino" Type="varchar" MaxLength="150" />
     <Property Name="Lat_destino" Type="varchar" MaxLength="150" />
     <Property Name="Dir_destino" Type="varchar" MaxLength="255" />
+    <Property Name="Pendiente" Type="tinyint" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

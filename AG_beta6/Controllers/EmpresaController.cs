@@ -11,6 +11,7 @@ using DataLayer6;
 
 namespace AG_beta6.Controllers
 {
+    [Authorize]
     public class EmpresaController : Controller
     {
         private DBControlTaxi db = new DBControlTaxi();
@@ -50,7 +51,7 @@ namespace AG_beta6.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id_empr,Rut,Dig,Nombre,Telefono,Descuento,FormaDePago,IdDireccion,IdTarifa")] Empresa empresa)
+        public async Task<ActionResult> Create([Bind(Include = "Id_empr,Rut,Dig,Nombre,Telefono,Descuento,FormaDePago,IdDireccion,Tarifa_id")] Empresa empresa)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +87,7 @@ namespace AG_beta6.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id_empr,Rut,Dig,Nombre,Telefono,Descuento,FormaDePago,IdDireccion,IdTarifa")] Empresa empresa)
+        public async Task<ActionResult> Edit([Bind(Include = "Id_empr,Rut,Dig,Nombre,Telefono,Descuento,FormaDePago,IdDireccion,Tarifa_id")] Empresa empresa)
         {
             if (ModelState.IsValid)
             {

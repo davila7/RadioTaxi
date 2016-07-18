@@ -11,21 +11,28 @@ namespace DataLayer6
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
     public partial class Reserva
     {
         public int Id_Reserva { get; set; }
         public int Cliente_Id { get; set; }
         public string RutConductor { get; set; }
+        [DisplayName("Patente")]
         public string PatenteVehiculo { get; set; }
+        [DisplayName("Fecha Transacción")]
         public Nullable<System.DateTime> Fecha_trx { get; set; }
+        [DisplayName("Fecha Viaje")]
         public Nullable<System.DateTime> Fecha_viaje { get; set; }
         public string Lng_origen { get; set; }
         public string Lat_origen { get; set; }
+        [DisplayName("Origen")]
         public string Dir_origen { get; set; }
         public string Lng_destino { get; set; }
         public string Lat_destino { get; set; }
+        [DisplayName("Destino")]
         public string Dir_destino { get; set; }
+        public Nullable<byte> Pendiente { get; set; }
     
         public virtual Cliente Cliente { get; set; }
         public virtual Conductor Conductor { get; set; }

@@ -4,10 +4,9 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>Usuarios Eliminados</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Usuarios", "Index")
 </p>
 <table class="table">
     <tr>
@@ -18,7 +17,7 @@
             @Html.DisplayNameFor(model => model.Dig)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre_usr)
+           Nombre Usuario
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
@@ -27,16 +26,13 @@
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Ape_pat)
+            Apellido Paterno
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Ape_mat)
+           Apellido Materno
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Flg_hab)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Contrasenha)
+            Contraseña
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Perfil.Dsc_Perfil)
@@ -68,13 +64,10 @@
             @Html.DisplayFor(modelItem => item.Ape_mat)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Flg_hab)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Contrasenha)
         </td>
         <td>
-           Perfil
+           @Html.DisplayFor(modelItem => item.Perfil.Dsc_Perfil)
         </td>
         <td>
             @Html.ActionLink("Restaurar", "Restaurar", new { id=item.Id_Usua }) 

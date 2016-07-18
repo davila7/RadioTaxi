@@ -11,6 +11,7 @@ using DataLayer6;
 
 namespace AG_beta6.Controllers
 {
+    [Authorize]
     public class ViajesController : Controller
     {
         private DBControlTaxi db = new DBControlTaxi();

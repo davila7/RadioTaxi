@@ -12,7 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Dig)
+            Rut
+        </th>
+        <th>
+            Digito
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
@@ -32,14 +35,14 @@
         <th>
             @Html.DisplayNameFor(model => model.Movil)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Id_Cond)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rut)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Dig)
         </td>
@@ -62,12 +65,9 @@
             @Html.DisplayFor(modelItem => item.Movil)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Id_Cond)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Rut }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Rut }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Rut })
+            <a href="Conductor/Edit/@item.Rut">Editar</a> |
+            <a href="Conductor/Details/@item.Rut">Details</a> |
+            <a href="Conductor/Delete/@item.Rut">Delete</a>
         </td>
     </tr>
 }

@@ -11,6 +11,7 @@ namespace DataLayer6
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
     public partial class Conductor
     {
@@ -18,11 +19,12 @@ namespace DataLayer6
         public Conductor()
         {
             this.Conductor_vehiculo = new HashSet<Conductor_vehiculo>();
-            this.Reserva = new HashSet<Reserva>();
             this.Viaje = new HashSet<Viaje>();
+            this.Reserva = new HashSet<Reserva>();
         }
     
         public string Rut { get; set; }
+        [DisplayName("Digito")]
         public string Dig { get; set; }
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
@@ -35,8 +37,8 @@ namespace DataLayer6
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Conductor_vehiculo> Conductor_vehiculo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reserva> Reserva { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Viaje> Viaje { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reserva> Reserva { get; set; }
     }
 }

@@ -11,6 +11,7 @@ using DataLayer6;
 
 namespace AG_beta6.Controllers
 {
+    [Authorize]
     public class ReservasController : Controller
     {
         private DBControlTaxi db = new DBControlTaxi();
@@ -19,7 +20,7 @@ namespace AG_beta6.Controllers
         public async Task<ActionResult> Index()
         {
             var reserva = db.Reserva.Include(r => r.Cliente).Include(r => r.Conductor);
-            return View(await reserva.ToListAsync());
+            return View(await reserva.ToListAsync() );
         }
 
         // GET: Reservas/Details/5
@@ -51,7 +52,7 @@ namespace AG_beta6.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id_Reserva,Cliente_Id,RutConductor,PatenteVehiculo,Fecha_trx,Fecha_viaje,Dir_origen,Dir_destino")] Reserva reserva)
+        public async Task<ActionResult> Create([Bind(Include = "Id_Reserva,Cliente_Id,RutConductor,PatenteVehiculo,Fecha_trx,Fecha_viaje,Dir_origen,Dir_destino,Pendiente")] Reserva reserva)
         {
             if (ModelState.IsValid)
             {
@@ -60,8 +61,8 @@ namespace AG_beta6.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Cliente_Id = new SelectList(db.Cliente, "Id_Clie", "Rut", reserva.Cliente_Id);
-            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Dig", reserva.RutConductor);
+            ViewBag.Cliente_Id = new SelectList(db.Cliente, "Id_Clie", "Nombre", reserva.Cliente_Id);
+            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Nombre", reserva.RutConductor);
             ViewBag.PatenteVehiculo = new SelectList(db.Vehiculo, "Patente", "Patente", reserva.PatenteVehiculo);
             return View(reserva);
         }
@@ -78,8 +79,8 @@ namespace AG_beta6.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Cliente_Id = new SelectList(db.Cliente, "Id_Clie", "Rut", reserva.Cliente_Id);
-            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Dig", reserva.RutConductor);
+            ViewBag.Cliente_Id = new SelectList(db.Cliente, "Id_Clie", "Nombre", reserva.Cliente_Id);
+            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Nombre", reserva.RutConductor);
             ViewBag.PatenteVehiculo = new SelectList(db.Vehiculo, "Patente", "Patente", reserva.PatenteVehiculo);
             return View(reserva);
         }
@@ -89,7 +90,7 @@ namespace AG_beta6.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id_Reserva,Cliente_Id,RutConductor,PatenteVehiculo,Fecha_trx,Fecha_viaje,Dir_origen,Dir_destino")] Reserva reserva)
+        public async Task<ActionResult> Edit([Bind(Include = "Id_Reserva,Cliente_Id,RutConductor,PatenteVehiculo,Fecha_trx,Fecha_viaje,Dir_origen,Dir_destino,Pendiente")] Reserva reserva)
         {
             if (ModelState.IsValid)
             {
@@ -97,8 +98,8 @@ namespace AG_beta6.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.Cliente_Id = new SelectList(db.Cliente, "Id_Clie", "Rut", reserva.Cliente_Id);
-            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Dig", reserva.RutConductor);
+            ViewBag.Cliente_Id = new SelectList(db.Cliente, "Id_Clie", "Nombre", reserva.Cliente_Id);
+            ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Nombre", reserva.RutConductor);
             ViewBag.PatenteVehiculo = new SelectList(db.Vehiculo, "Patente", "Patente", reserva.PatenteVehiculo);
             return View(reserva);
         }
