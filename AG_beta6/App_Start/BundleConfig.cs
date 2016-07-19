@@ -22,6 +22,8 @@ namespace AG_beta6
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/moment.js",
+                      "~/Scripts/Rut.js",
+                      "~/Scripts/Global.js",
                       "~/Scripts/bootstrap-datetimepicker.js",
                       "~/Scripts/respond.js"));
 

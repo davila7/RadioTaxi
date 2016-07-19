@@ -94,7 +94,14 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<script>
 
+    $('#Rut').Rut({
+        digito_verificador: '#Dig',
+        on_error: function () { alert('Rut incorrecto'); }
+    });
+
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
