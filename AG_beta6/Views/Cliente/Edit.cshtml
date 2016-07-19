@@ -80,7 +80,10 @@
 
     $('#Rut').Rut({
         digito_verificador: '#Dig',
-        on_error: function () { alert('Rut incorrecto'); }
+        on_error: function () {
+            $('#Dig').val("");
+            alert('Rut incorrecto');
+        }
     });
 
 </script>
