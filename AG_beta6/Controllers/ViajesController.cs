@@ -84,6 +84,17 @@ namespace AG_beta6.Controllers
             return View(viaje);
         }
 
+        // GET: Viajes/Reporte
+        public async Task<ActionResult> ReporteViajes(DateTime? start, DateTime? end)
+        {
+            var viaje = db.Viaje.Include(v => v.Cliente).Include(v => v.Conductor).Include(v => v.estado);
+            if(start != null && end != null)
+                viaje = db.Viaje.Where(x => x.FechaInicio >= start && end <= x.FechaInicio).Include(v => v.Cliente).Include(v => v.Conductor).Include(v => v.estado);
+            ViewBag.start = start;
+            ViewBag.start = end;
+            return View(await viaje.ToListAsync());
+        }
+
         // GET: Viajes/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {

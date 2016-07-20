@@ -1,0 +1,129 @@
+﻿@model IEnumerable<DataLayer6.Viaje>
+
+@{
+    ViewBag.Title = "CobroEmpresa";
+}
+
+<h2>CobroEmpresa</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Origen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Destino)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Km)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaTermino)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitud_des)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitud_des)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitud_ori)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitud_ori)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoraIni)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoraTer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor_bndra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor_mts)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente.Rut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Conductor.Dig)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Origen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Destino)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Km)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaTermino)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Latitud_des)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitud_des)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Latitud_ori)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitud_ori)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoraIni)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoraTer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valor_bndra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valor_mts)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente.Rut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Conductor.Dig)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_viaje }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_viaje }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_viaje })
+        </td>
+    </tr>
+}
+
+</table>

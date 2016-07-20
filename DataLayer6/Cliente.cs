@@ -12,6 +12,7 @@ namespace DataLayer6
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Cliente
     {
@@ -22,14 +23,21 @@ namespace DataLayer6
             this.Direccion = new HashSet<Direccion>();
             this.Reserva = new HashSet<Reserva>();
         }
-    
+        
+        [Required]
         public string Rut { get; set; }
+        [Required]
         [DisplayName("Digito")]
         public string Dig { get; set; }
+        [Required]
         public string Nombre { get; set; }
+        [Required]
         public string Apellidos { get; set; }
+        [Required]
         public string Telefono { get; set; }
+        [Required]
         public int IdEmpresa { get; set; }
+        [Required]
         public int Id_Clie { get; set; }
     
         public virtual Empresa Empresa { get; set; }

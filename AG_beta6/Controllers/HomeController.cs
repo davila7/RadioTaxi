@@ -25,6 +25,21 @@ namespace AG_beta6.Controllers
         }
 
         [AllowAnonymous]
+        public ActionResult Dashboard()
+        {
+            return View();
+            /*if (User.Identity.IsAuthenticated)
+            {
+               
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }*/
+
+        }
+
+        [AllowAnonymous]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

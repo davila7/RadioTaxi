@@ -12,6 +12,7 @@ namespace DataLayer6
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Empresa
     {
@@ -20,17 +21,25 @@ namespace DataLayer6
         {
             this.Cliente = new HashSet<Cliente>();
         }
-    
+        
         public int Id_empr { get; set; }
+        [Required]
         public string Rut { get; set; }
+        [Required]
         [DisplayName("Digito")]
         public string Dig { get; set; }
+        [Required]
         public string Nombre { get; set; }
+        [Required]
         public string Telefono { get; set; }
+        [Required]
         public Nullable<int> Descuento { get; set; }
+        [Required]
         [DisplayName("Forma de Pago")]
         public string FormaDePago { get; set; }
+        [Required]
         public Nullable<int> Tarifa_id { get; set; }
+        [Required]
         public int IdDireccion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

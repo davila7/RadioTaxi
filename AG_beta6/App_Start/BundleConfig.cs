@@ -24,6 +24,7 @@ namespace AG_beta6
                       "~/Scripts/moment.js",
                       "~/Scripts/Rut.js",
                       "~/Scripts/Global.js",
+                      "~/Scripts/Chart.js",
                       "~/Scripts/bootstrap-datetimepicker.js",
                       "~/Scripts/respond.js"));
 

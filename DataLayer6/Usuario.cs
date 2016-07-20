@@ -21,8 +21,11 @@ namespace DataLayer6
         public string Dig { get; set; }
         [Required]
         public string Nombre { get; set; }
+        [Required]
         public string Email { get; set; }
+        [Required]
         public string Ape_pat { get; set; }
+        [Required]
         public string Ape_mat { get; set; }
         public Nullable<int> Fono1 { get; set; }
         public Nullable<int> Fono2 { get; set; }

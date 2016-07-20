@@ -12,6 +12,7 @@ namespace DataLayer6
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Conductor
     {
@@ -22,16 +23,22 @@ namespace DataLayer6
             this.Viaje = new HashSet<Viaje>();
             this.Reserva = new HashSet<Reserva>();
         }
-    
+        [Required]
         public string Rut { get; set; }
+        [Required]
         [DisplayName("Digito")]
         public string Dig { get; set; }
+        [Required]
         public string Nombre { get; set; }
+        [Required]
         public string Apellidos { get; set; }
         public string Telefono { get; set; }
+        [Required]
         public Nullable<int> Comision { get; set; }
         public bool Habilitado { get; set; }
+        [Required]
         public int Movil { get; set; }
+        [Required]
         public int Id_Cond { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

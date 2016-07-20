@@ -52,6 +52,7 @@ namespace AG_beta6.Controllers
         {
             if (ModelState.IsValid)
             {
+                conductor.Rut = conductor.Rut.Replace(",", "");
                 db.Conductor.Add(conductor);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -84,6 +85,7 @@ namespace AG_beta6.Controllers
         {
             if (ModelState.IsValid)
             {
+                conductor.Rut = conductor.Rut.Replace(",", "");
                 db.Entry(conductor).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

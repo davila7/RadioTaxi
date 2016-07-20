@@ -61,6 +61,7 @@ namespace AG_beta6.Controllers
         {
             if (ModelState.IsValid)
             {
+                usuario.Rut = usuario.Rut.Replace(".", "");
                 db.Usuario.Add(usuario);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -112,6 +113,7 @@ namespace AG_beta6.Controllers
         {
             if (ModelState.IsValid)
             {
+                usuario.Rut = usuario.Rut.Replace(".", "");
                 db.Entry(usuario).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

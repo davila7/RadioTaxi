@@ -195,6 +195,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\ag_beta6.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Global.js" />
     <Content Include="Scripts\Gobal.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -303,6 +304,10 @@
     <Content Include="Views\Estados\Details.cshtml" />
     <Content Include="Views\Estados\Edit.cshtml" />
     <Content Include="Views\Estados\Index.cshtml" />
+    <Content Include="Views\Viajes\ReporteViajes.cshtml" />
+    <Content Include="Views\Viajes\PagoChofer.cshtml" />
+    <Content Include="Views\Viajes\CobroEmpresa.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
