@@ -1,129 +1,156 @@
 ﻿@model IEnumerable<DataLayer6.Viaje>
 
 @{
-    ViewBag.Title = "CobroEmpresa";
+    ViewBag.Title = "ReporteViajes";
 }
 
-<h2>CobroEmpresa</h2>
+<h2>Reporte Viajes Empresa</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="row">
+    <div class="col-md-4">
+        Desde
+        <input class="form-control datetimepicker text-box single-line" placeholder="Fecha Desde" id="start" name="start" type="datetime" value="@ViewBag.start">
+    </div>
+    <div class="col-md-4">
+        Hasta
+        <input class="form-control datetimepicker text-box single-line" placeholder="Fecha Hasta" id="end" name="end" type="datetime" value="@ViewBag.end">
+    </div>
+    <div class="col-md-4">
+        <a href="#" id="buscar" class="btn btn-info">Buscar</a>
+    </div>
+</div>
+<br />
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Origen)
+           Cliente / Empresa
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Destino)
+            Total Viajes
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Km)
+            Total Pagos
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Valor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaInicio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaTermino)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Latitud_des)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Longitud_des)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Latitud_ori)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Longitud_ori)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HoraIni)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HoraTer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Valor_bndra)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Valor_mts)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cliente.Rut)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Conductor.Dig)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estado.Nombre)
-        </th>
-        <th></th>
     </tr>
+    @foreach (var itemTotales in Model.GroupBy(x => x.Cliente))
+    {
+        <tr>
+            <td>
+              @Html.DisplayFor(mi => itemTotales.First().Cliente.Nombre) ( @Html.DisplayFor(mi => itemTotales.First().Cliente.Empresa.Nombre) ) 
+            </td>
+            <td>
+                @Html.DisplayFor(mi => itemTotales.Key.Viaje.Count)
+            </td>
+            <th>
+                @{int total = 0; }
+                @foreach (var itemValor in itemTotales.Key.Viaje.Select(v => v.Valor))
+                {
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Origen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Destino)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Km)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Valor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaInicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaTermino)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Latitud_des)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Longitud_des)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Latitud_ori)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Longitud_ori)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoraIni)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoraTer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Valor_bndra)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Valor_mts)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cliente.Rut)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Conductor.Dig)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.estado.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_viaje }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_viaje }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_viaje })
-        </td>
-    </tr>
-}
+                    total = total + (Int32.Parse(itemValor.Value.ToString()));
 
+                }
+                @total
+            </th>
+        </tr>
+    }
 </table>
+<button data-toggle="collapse" class="btn btn-info" data-target="#viajes">Mostrar Registros</button>
+<div id="viajes" class="collapse">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Origen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destino)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Km)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaTermino)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraIni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraTer)
+            </th>
+            <th>
+                Valor Bandera
+            </th>
+            <th>
+                Valor Metros
+            </th>
+            <th>
+                Cliente
+            </th>
+            <th>
+                Conductor
+            </th>
+            <th>
+                Estado
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Origen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destino)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Km)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaTermino)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoraIni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoraTer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor_bndra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor_mts)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Conductor.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado.Nombre)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<script>
+                $("#buscar").click(function () {
+                    window.location.href = '@Url.Action("ReporteViajes")' + '/?start=' + $('#start').val() + '&end=' + $('#end').val();
+                    return false;
+                });
+</script>

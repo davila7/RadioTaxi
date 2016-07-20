@@ -44,7 +44,10 @@
                     if (User.Identity.Name == "Admin")
                     {
                         <li>
-                            @Html.ActionLink("Reportes", "ReporteViajes", "Viajes")
+                            @Html.ActionLink("Reporte Conductores", "ReporteViajes", "Viajes")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Reporte Empresas", "CobroEmpresa", "Viajes")
                         </li>
                         <li>
                             @Html.ActionLink("Usuarios", "Index", "Usuario")
