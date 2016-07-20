@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DataLayer6;
+using System.Data.Entity.Validation;
 
 namespace AG_beta6.Controllers
 {
@@ -53,13 +54,28 @@ namespace AG_beta6.Controllers
         {
             if (ModelState.IsValid)
             {
-                conductor.Rut = conductor.Rut.Replace(",", "");
+                conductor.Rut = conductor.Rut.Replace(".", "");
                 if (conductor.Telefono == null)
                 {
                     conductor.Telefono = "";
                 }
                 db.Conductor.Add(conductor);
-                await db.SaveChangesAsync();
+                try{
+                    await db.SaveChangesAsync();
+                }catch (DbEntityValidationException e)
+                        {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
+                    throw;
+}
                 return RedirectToAction("Index", new { message = "success" });
             }
 
