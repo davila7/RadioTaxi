@@ -17,8 +17,9 @@ namespace AG_beta6.Controllers
         private DBControlTaxi db = new DBControlTaxi();
 
         // GET: Estados
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string message)
         {
+            ViewBag.Message = message;
             return View(await db.estado.ToListAsync());
         }
 
@@ -54,7 +55,7 @@ namespace AG_beta6.Controllers
             {
                 db.estado.Add(estado);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
 
             return View(estado);
@@ -86,7 +87,7 @@ namespace AG_beta6.Controllers
             {
                 db.Entry(estado).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
             return View(estado);
         }

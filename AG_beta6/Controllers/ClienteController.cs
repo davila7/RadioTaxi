@@ -17,8 +17,9 @@ namespace AG_beta6.Controllers
         private DBControlTaxi db = new DBControlTaxi();
 
         // GET: Cliente
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string message)
         {
+            ViewBag.Message = message;
             var cliente = db.Cliente.Include(c => c.Empresa);
             return View(await cliente.ToListAsync());
         }
@@ -57,7 +58,7 @@ namespace AG_beta6.Controllers
                 cliente.Rut = cliente.Rut.Replace(".", "");
                 db.Cliente.Add(cliente);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
 
             ViewBag.IdEmpresa = new SelectList(db.Empresa, "Id_empr", "Rut", cliente.IdEmpresa);
@@ -92,7 +93,7 @@ namespace AG_beta6.Controllers
                 cliente.Rut = cliente.Rut.Replace(".", "");
                 db.Entry(cliente).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
             ViewBag.IdEmpresa = new SelectList(db.Empresa, "Id_empr", "Rut", cliente.IdEmpresa);
             return View(cliente);

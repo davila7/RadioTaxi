@@ -30,6 +30,7 @@ namespace DataLayer6
         public string Nombre { get; set; }
         [Required]
         public string Apellidos { get; set; }
+        [Required]
         public string Telefono { get; set; }
         [Required]
         public Nullable<int> Comision { get; set; }

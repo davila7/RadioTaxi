@@ -17,8 +17,9 @@ namespace AG_beta6.Controllers
         private DBControlTaxi db = new DBControlTaxi();
 
         // GET: Reservas
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string message)
         {
+            ViewBag.Message = message;
             var reserva = db.Reserva.Include(r => r.Cliente).Include(r => r.Conductor);
             return View(await reserva.ToListAsync() );
         }
@@ -58,7 +59,7 @@ namespace AG_beta6.Controllers
             {
                 db.Reserva.Add(reserva);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
 
             ViewBag.Cliente_Id = new SelectList(db.Cliente, "Id_Clie", "Nombre", reserva.Cliente_Id);
@@ -96,7 +97,7 @@ namespace AG_beta6.Controllers
             {
                 db.Entry(reserva).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
             ViewBag.Cliente_Id = new SelectList(db.Cliente, "Id_Clie", "Nombre", reserva.Cliente_Id);
             ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Nombre", reserva.RutConductor);

@@ -17,8 +17,9 @@ namespace AG_beta6.Controllers
         private DBControlTaxi db = new DBControlTaxi();
 
         // GET: Perfil
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string message)
         {
+            ViewBag.Message = message;
             return View(await db.Perfil.ToListAsync());
         }
 
@@ -54,7 +55,7 @@ namespace AG_beta6.Controllers
             {
                 db.Perfil.Add(perfil);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
 
             return View(perfil);
@@ -86,7 +87,7 @@ namespace AG_beta6.Controllers
             {
                 db.Entry(perfil).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
             return View(perfil);
         }

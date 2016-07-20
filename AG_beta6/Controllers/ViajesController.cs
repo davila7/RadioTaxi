@@ -17,8 +17,9 @@ namespace AG_beta6.Controllers
         private DBControlTaxi db = new DBControlTaxi();
 
         // GET: Viajes
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string message)
         {
+            ViewBag.Message = message;
             var viaje = db.Viaje.Include(v => v.Cliente).Include(v => v.Conductor).Include(v => v.estado);
             return View(await viaje.ToListAsync());
         }
@@ -75,7 +76,7 @@ namespace AG_beta6.Controllers
             {
                 db.Viaje.Add(viaje);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
 
             ViewBag.IdPasajero = new SelectList(db.Cliente, "Id_Clie", "Rut", viaje.IdPasajero);
@@ -130,7 +131,7 @@ namespace AG_beta6.Controllers
             {
                 db.Entry(viaje).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
             ViewBag.IdPasajero = new SelectList(db.Cliente, "Id_Clie", "Nombre", viaje.IdPasajero);
             ViewBag.RutConductor = new SelectList(db.Conductor, "Rut", "Nombre", viaje.RutConductor);

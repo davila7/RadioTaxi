@@ -17,8 +17,9 @@ namespace AG_beta6.Controllers
         private DBControlTaxi db = new DBControlTaxi();
 
         // GET: Vehiculo
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string message)
         {
+            ViewBag.Message = message;
             return View(await db.Vehiculo.ToListAsync());
         }
 
@@ -54,7 +55,7 @@ namespace AG_beta6.Controllers
             {
                 db.Vehiculo.Add(vehiculo);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
 
             return View(vehiculo);
@@ -86,7 +87,7 @@ namespace AG_beta6.Controllers
             {
                 db.Entry(vehiculo).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
             return View(vehiculo);
         }

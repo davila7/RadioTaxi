@@ -17,8 +17,9 @@ namespace AG_beta6.Controllers
         private DBControlTaxi db = new DBControlTaxi();
 
         // GET: Conductor
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string message)
         {
+            ViewBag.Message = message;
             return View(await db.Conductor.ToListAsync());
         }
 
@@ -48,14 +49,18 @@ namespace AG_beta6.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Rut,Dig,Nombre,Apellidos,Telefono,Comision,Habilitado,Movil,Id_Cond")] Conductor conductor)
+        public async Task<ActionResult> Create([Bind(Include = "Rut,Dig,Nombre,Apellidos,Telefono,Comision,Habilitado,Movil")] Conductor conductor)
         {
             if (ModelState.IsValid)
             {
                 conductor.Rut = conductor.Rut.Replace(",", "");
+                if (conductor.Telefono == null)
+                {
+                    conductor.Telefono = "";
+                }
                 db.Conductor.Add(conductor);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
 
             return View(conductor);
@@ -86,9 +91,13 @@ namespace AG_beta6.Controllers
             if (ModelState.IsValid)
             {
                 conductor.Rut = conductor.Rut.Replace(",", "");
+                if (conductor.Telefono == null)
+                {
+                    conductor.Telefono = "";
+                }
                 db.Entry(conductor).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
             return View(conductor);
         }

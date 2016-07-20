@@ -17,8 +17,9 @@ namespace AG_beta6.Controllers
         private DBControlTaxi db = new DBControlTaxi();
 
         // GET: Usuario
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string message)
         {
+            ViewBag.Message = message;
             var usuario = db.Usuario.Where(x => x.Flg_elim == false).Include(u => u.Perfil);
             return View(await usuario.ToListAsync());
         }
@@ -64,7 +65,7 @@ namespace AG_beta6.Controllers
                 usuario.Rut = usuario.Rut.Replace(".", "");
                 db.Usuario.Add(usuario);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
 
             ViewBag.Id_Pefil = new SelectList(db.Perfil, "Id_Perfil", "Dsc_Perfil", usuario.Id_Pefil);
@@ -101,7 +102,7 @@ namespace AG_beta6.Controllers
             }
             usuario.Flg_elim = false;
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { message = "success" });
         }
 
         // POST: Usuario/Edit/5
@@ -116,7 +117,7 @@ namespace AG_beta6.Controllers
                 usuario.Rut = usuario.Rut.Replace(".", "");
                 db.Entry(usuario).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "success" });
             }
             ViewBag.Id_Pefil = new SelectList(db.Perfil, "Id_Perfil", "Dsc_Perfil", usuario.Id_Pefil);
             return View(usuario);
