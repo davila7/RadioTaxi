@@ -65,6 +65,7 @@
     <Property Name="FormaDePago" Type="varchar" MaxLength="50" />
     <Property Name="Tarifa_id" Type="int" />
     <Property Name="IdDireccion" Type="int" Nullable="false" />
+    <Property Name="Direccion" Type="varchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="estado">
     <Key>
@@ -232,18 +233,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_empresa_direccion">
-    <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
-    <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Direccion">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Empresa">
-        <PropertyRef Name="IdDireccion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Empresa_Tarifa">
     <End Role="Tarifa" Type="Self.Tarifa" Multiplicity="0..1" />
     <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
@@ -374,10 +363,6 @@
     <AssociationSet Name="FK_conductor-vehiculo_Vehiculo" Association="Self.FK_conductor-vehiculo_Vehiculo">
       <End Role="Vehiculo" EntitySet="Vehiculo" />
       <End Role="Conductor-vehiculo" EntitySet="Conductor-vehiculo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_empresa_direccion" Association="Self.FK_empresa_direccion">
-      <End Role="Direccion" EntitySet="Direccion" />
-      <End Role="Empresa" EntitySet="Empresa" />
     </AssociationSet>
     <AssociationSet Name="FK_Empresa_Tarifa" Association="Self.FK_Empresa_Tarifa">
       <End Role="Tarifa" EntitySet="Tarifa" />

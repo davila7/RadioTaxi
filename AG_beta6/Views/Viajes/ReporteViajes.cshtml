@@ -16,103 +16,128 @@
         <input class="form-control datetimepicker text-box single-line" placeholder="Fecha Hasta" id="end" name="end" type="datetime" value="@ViewBag.end">
     </div>
     <div class="col-md-4">
-       <a href="#" id="buscar" class="btn btn-info">Buscar</a>
+        <a href="#" id="buscar" class="btn btn-info">Buscar</a>
     </div>
 </div>
 <br />
-@ViewBag.start / @ViewBag.end
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Origen)
+            Conductor
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Destino)
+            Total Viajes
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Km)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Valor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaInicio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaTermino)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HoraIni)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HoraTer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Valor_bndra)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Valor_mts)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cliente.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Conductor.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estado.Nombre)
-        </th>
-        <th></th>
     </tr>
-
-@foreach (var item in Model) {
+    @foreach(var itemTotales in Model.GroupBy(x => x.Conductor))
+    { 
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Origen)
+            @Html.DisplayFor(mi => itemTotales.First().Conductor.Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Destino)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Km)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Valor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaInicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaTermino)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoraIni)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoraTer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Valor_bndra)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Valor_mts)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cliente.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Conductor.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.estado.Nombre)
+            @Html.DisplayFor(mi => itemTotales.Key.Viaje.Count)
         </td>
     </tr>
-}
-
+    }
 </table>
-<script>
-    $("#buscar").click(function () {
-        window.location.href = '@Url.Action("ReporteViajes")' + '/?start=' + $('#start').val() + '&end=' + $('#end').val();
-      return false;
-});
-</script>
+            <button data-toggle="collapse" class="btn btn-info" data-target="#viajes">Mostrar Registros</button>
+            <div id="viajes" class="collapse">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Origen)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Destino)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Km)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Valor)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaInicio)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaTermino)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.HoraIni)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.HoraTer)
+                        </th>
+                        <th>
+                            Valor Bandera
+                        </th>
+                        <th>
+                            Valor Metros
+                        </th>
+                        <th>
+                            Cliente
+                        </th>
+                        <th>
+                            Conductor
+                        </th>
+                        <th>
+                            Estado
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Origen)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Destino)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Km)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Valor)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaInicio)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaTermino)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HoraIni)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HoraTer)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Valor_bndra)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Valor_mts)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Conductor.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.estado.Nombre)
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+
+            <script>
+                $("#buscar").click(function () {
+                    window.location.href = '@Url.Action("ReporteViajes")' + '/?start=' + $('#start').val() + '&end=' + $('#end').val();
+                    return false;
+                });
+            </script>

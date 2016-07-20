@@ -28,8 +28,6 @@ namespace DataLayer6
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Conductor> Conductor { get; set; }
         public virtual DbSet<Conductor_vehiculo> Conductor_vehiculo { get; set; }
-        public virtual DbSet<Direccion> Direccion { get; set; }
-        public virtual DbSet<Empresa> Empresa { get; set; }
         public virtual DbSet<estado> estado { get; set; }
         public virtual DbSet<Perfil> Perfil { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
@@ -38,5 +36,7 @@ namespace DataLayer6
         public virtual DbSet<Vehiculo> Vehiculo { get; set; }
         public virtual DbSet<Viaje> Viaje { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
+        public virtual DbSet<Direccion> Direccion { get; set; }
+        public virtual DbSet<Empresa> Empresa { get; set; }
     }
 }

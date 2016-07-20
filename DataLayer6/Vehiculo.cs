@@ -11,7 +11,6 @@ namespace DataLayer6
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     
     public partial class Vehiculo
     {
@@ -23,14 +22,11 @@ namespace DataLayer6
         }
     
         public string Patente { get; set; }
-        [DisplayName("Digito")]
         public string Dig { get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }
-        [DisplayName("Año")]
         public int Anho { get; set; }
         public int Cilindrada { get; set; }
-        [DisplayName("Kilometros")]
         public Nullable<double> KmLt { get; set; }
         public int Id_Vehi { get; set; }
     

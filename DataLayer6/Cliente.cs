@@ -11,7 +11,6 @@ namespace DataLayer6
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     
     public partial class Cliente
@@ -20,14 +19,13 @@ namespace DataLayer6
         public Cliente()
         {
             this.Viaje = new HashSet<Viaje>();
-            this.Direccion = new HashSet<Direccion>();
             this.Reserva = new HashSet<Reserva>();
+            this.Direccion = new HashSet<Direccion>();
         }
-        
+
         [Required]
         public string Rut { get; set; }
         [Required]
-        [DisplayName("Digito")]
         public string Dig { get; set; }
         [Required]
         public string Nombre { get; set; }
@@ -37,15 +35,14 @@ namespace DataLayer6
         public string Telefono { get; set; }
         [Required]
         public int IdEmpresa { get; set; }
-        [Required]
         public int Id_Clie { get; set; }
     
-        public virtual Empresa Empresa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Viaje> Viaje { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Direccion> Direccion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reserva> Reserva { get; set; }
+        public virtual Empresa Empresa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Direccion> Direccion { get; set; }
     }
 }

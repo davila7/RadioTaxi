@@ -17,7 +17,6 @@ namespace DataLayer6
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Direccion()
         {
-            this.Empresa = new HashSet<Empresa>();
             this.Cliente = new HashSet<Cliente>();
         }
     
@@ -26,8 +25,6 @@ namespace DataLayer6
         public double Latitud { get; set; }
         public double Longitud { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Empresa> Empresa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cliente> Cliente { get; set; }
     }

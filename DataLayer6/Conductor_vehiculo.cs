@@ -11,12 +11,10 @@ namespace DataLayer6
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     
     public partial class Conductor_vehiculo
     {
         public string RutConductor { get; set; }
-        [DisplayName("Patente Vehiculo")]
         public string PatenteVehiculo { get; set; }
         public int Id_cond_vehi { get; set; }
     

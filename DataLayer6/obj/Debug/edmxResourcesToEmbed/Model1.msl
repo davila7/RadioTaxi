@@ -38,31 +38,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Direccion">
-      <EntityTypeMapping TypeName="DBControlTaxiModel.Direccion">
-        <MappingFragment StoreEntitySet="Direccion">
-          <ScalarProperty Name="Longitud" ColumnName="Longitud" />
-          <ScalarProperty Name="Latitud" ColumnName="Latitud" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Empresa">
-      <EntityTypeMapping TypeName="DBControlTaxiModel.Empresa">
-        <MappingFragment StoreEntitySet="Empresa">
-          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
-          <ScalarProperty Name="Tarifa_id" ColumnName="Tarifa_id" />
-          <ScalarProperty Name="FormaDePago" ColumnName="FormaDePago" />
-          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
-          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Dig" ColumnName="Dig" />
-          <ScalarProperty Name="Rut" ColumnName="Rut" />
-          <ScalarProperty Name="Id_empr" ColumnName="Id_empr" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="estado">
       <EntityTypeMapping TypeName="DBControlTaxiModel.estado">
         <MappingFragment StoreEntitySet="estado">
@@ -158,14 +133,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="Cliente_Direccion" TypeName="DBControlTaxiModel.Cliente_Direccion" StoreEntitySet="Cliente-Direccion">
-      <EndProperty Name="Direccion">
-        <ScalarProperty Name="Id" ColumnName="IdDireccion" />
-      </EndProperty>
-      <EndProperty Name="Cliente">
-        <ScalarProperty Name="Id_Clie" ColumnName="IdCliente" />
-      </EndProperty>
-    </AssociationSetMapping>
     <EntitySetMapping Name="Reserva">
       <EntityTypeMapping TypeName="DBControlTaxiModel.Reserva">
         <MappingFragment StoreEntitySet="Reserva">
@@ -185,5 +152,39 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Direccion">
+      <EntityTypeMapping TypeName="DBControlTaxiModel.Direccion">
+        <MappingFragment StoreEntitySet="Direccion">
+          <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+          <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empresa">
+      <EntityTypeMapping TypeName="DBControlTaxiModel.Empresa">
+        <MappingFragment StoreEntitySet="Empresa">
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="Tarifa_id" ColumnName="Tarifa_id" />
+          <ScalarProperty Name="FormaDePago" ColumnName="FormaDePago" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Dig" ColumnName="Dig" />
+          <ScalarProperty Name="Rut" ColumnName="Rut" />
+          <ScalarProperty Name="Id_empr" ColumnName="Id_empr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Cliente_Direccion" TypeName="DBControlTaxiModel.Cliente_Direccion" StoreEntitySet="Cliente-Direccion">
+      <EndProperty Name="Direccion">
+        <ScalarProperty Name="Id" ColumnName="IdDireccion" />
+      </EndProperty>
+      <EndProperty Name="Cliente">
+        <ScalarProperty Name="Id_Clie" ColumnName="IdCliente" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

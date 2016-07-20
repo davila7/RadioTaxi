@@ -87,11 +87,17 @@ namespace AG_beta6.Controllers
         // GET: Viajes/Reporte
         public async Task<ActionResult> ReporteViajes(DateTime? start, DateTime? end)
         {
+            string stringdatestart = "";
+            string stringdatesend = "";
             var viaje = db.Viaje.Include(v => v.Cliente).Include(v => v.Conductor).Include(v => v.estado);
-            if(start != null && end != null)
-                viaje = db.Viaje.Where(x => x.FechaInicio >= start && end <= x.FechaInicio).Include(v => v.Cliente).Include(v => v.Conductor).Include(v => v.estado);
-            ViewBag.start = start;
-            ViewBag.start = end;
+            if (start != null && end != null) 
+            {
+                viaje = db.Viaje.Where(x => x.FechaInicio >= start && x.FechaInicio <= end).Include(v => v.Cliente).Include(v => v.Conductor).Include(v => v.estado);
+                stringdatestart = start.Value.ToString("yyyy/MM/dd");
+                stringdatesend = end.Value.ToString("yyyy/MM/dd");
+            }
+            ViewBag.start = stringdatestart;
+            ViewBag.end = stringdatesend;
             return View(await viaje.ToListAsync());
         }
 

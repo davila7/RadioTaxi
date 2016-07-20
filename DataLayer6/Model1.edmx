@@ -70,6 +70,7 @@
           <Property Name="FormaDePago" Type="varchar" MaxLength="50" />
           <Property Name="Tarifa_id" Type="int" />
           <Property Name="IdDireccion" Type="int" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="estado">
           <Key>
@@ -237,18 +238,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_empresa_direccion">
-          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
-          <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Direccion">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Empresa">
-              <PropertyRef Name="IdDireccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Empresa_Tarifa">
           <End Role="Tarifa" Type="Self.Tarifa" Multiplicity="0..1" />
           <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
@@ -380,10 +369,6 @@
             <End Role="Vehiculo" EntitySet="Vehiculo" />
             <End Role="Conductor-vehiculo" EntitySet="Conductor-vehiculo" />
           </AssociationSet>
-          <AssociationSet Name="FK_empresa_direccion" Association="Self.FK_empresa_direccion">
-            <End Role="Direccion" EntitySet="Direccion" />
-            <End Role="Empresa" EntitySet="Empresa" />
-          </AssociationSet>
           <AssociationSet Name="FK_Empresa_Tarifa" Association="Self.FK_Empresa_Tarifa">
             <End Role="Tarifa" EntitySet="Tarifa" />
             <End Role="Empresa" EntitySet="Empresa" />
@@ -425,8 +410,6 @@
           <EntitySet Name="Cliente" EntityType="DBControlTaxiModel.Cliente" />
           <EntitySet Name="Conductor" EntityType="DBControlTaxiModel.Conductor" />
           <EntitySet Name="Conductor_vehiculo" EntityType="DBControlTaxiModel.Conductor_vehiculo" />
-          <EntitySet Name="Direccion" EntityType="DBControlTaxiModel.Direccion" />
-          <EntitySet Name="Empresa" EntityType="DBControlTaxiModel.Empresa" />
           <EntitySet Name="estado" EntityType="DBControlTaxiModel.estado" />
           <EntitySet Name="Perfil" EntityType="DBControlTaxiModel.Perfil" />
           <EntitySet Name="sysdiagrams" EntityType="DBControlTaxiModel.sysdiagrams" />
@@ -434,10 +417,6 @@
           <EntitySet Name="Usuario" EntityType="DBControlTaxiModel.Usuario" />
           <EntitySet Name="Vehiculo" EntityType="DBControlTaxiModel.Vehiculo" />
           <EntitySet Name="Viaje" EntityType="DBControlTaxiModel.Viaje" />
-          <AssociationSet Name="FK_cliente_empresa" Association="DBControlTaxiModel.FK_cliente_empresa">
-            <End Role="Empresa" EntitySet="Empresa" />
-            <End Role="Cliente" EntitySet="Cliente" />
-          </AssociationSet>
           <AssociationSet Name="FK_Viaje_cliente" Association="DBControlTaxiModel.FK_Viaje_cliente">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Viaje" EntitySet="Viaje" />
@@ -454,14 +433,6 @@
             <End Role="Vehiculo" EntitySet="Vehiculo" />
             <End Role="Conductor_vehiculo" EntitySet="Conductor_vehiculo" />
           </AssociationSet>
-          <AssociationSet Name="FK_empresa_direccion" Association="DBControlTaxiModel.FK_empresa_direccion">
-            <End Role="Direccion" EntitySet="Direccion" />
-            <End Role="Empresa" EntitySet="Empresa" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Empresa_Tarifa" Association="DBControlTaxiModel.FK_Empresa_Tarifa">
-            <End Role="Tarifa" EntitySet="Tarifa" />
-            <End Role="Empresa" EntitySet="Empresa" />
-          </AssociationSet>
           <AssociationSet Name="FK_Viaje_estado" Association="DBControlTaxiModel.FK_Viaje_estado">
             <End Role="estado" EntitySet="estado" />
             <End Role="Viaje" EntitySet="Viaje" />
@@ -469,10 +440,6 @@
           <AssociationSet Name="FK_Usuario_Perfil1" Association="DBControlTaxiModel.FK_Usuario_Perfil1">
             <End Role="Perfil" EntitySet="Perfil" />
             <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
-          <AssociationSet Name="Cliente_Direccion" Association="DBControlTaxiModel.Cliente_Direccion">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Direccion" EntitySet="Direccion" />
           </AssociationSet>
           <EntitySet Name="Reserva" EntityType="DBControlTaxiModel.Reserva" />
           <AssociationSet Name="FK_Reserva_Cliente" Association="DBControlTaxiModel.FK_Reserva_Cliente">
@@ -487,6 +454,20 @@
             <End Role="Vehiculo" EntitySet="Vehiculo" />
             <End Role="Reserva" EntitySet="Reserva" />
           </AssociationSet>
+          <EntitySet Name="Direccion" EntityType="DBControlTaxiModel.Direccion" />
+          <EntitySet Name="Empresa" EntityType="DBControlTaxiModel.Empresa" />
+          <AssociationSet Name="FK_cliente_empresa" Association="DBControlTaxiModel.FK_cliente_empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresa_Tarifa" Association="DBControlTaxiModel.FK_Empresa_Tarifa">
+            <End Role="Tarifa" EntitySet="Tarifa" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="Cliente_Direccion" Association="DBControlTaxiModel.Cliente_Direccion">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Cliente">
           <Key>
@@ -499,10 +480,10 @@
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
           <Property Name="Id_Clie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Empresa" Relationship="DBControlTaxiModel.FK_cliente_empresa" FromRole="Cliente" ToRole="Empresa" />
           <NavigationProperty Name="Viaje" Relationship="DBControlTaxiModel.FK_Viaje_cliente" FromRole="Cliente" ToRole="Viaje" />
-          <NavigationProperty Name="Direccion" Relationship="DBControlTaxiModel.Cliente_Direccion" FromRole="Cliente" ToRole="Direccion" />
           <NavigationProperty Name="Reserva" Relationship="DBControlTaxiModel.FK_Reserva_Cliente" FromRole="Cliente" ToRole="Reserva" />
+          <NavigationProperty Name="Empresa" Relationship="DBControlTaxiModel.FK_cliente_empresa" FromRole="Cliente" ToRole="Empresa" />
+          <NavigationProperty Name="Direccion" Relationship="DBControlTaxiModel.Cliente_Direccion" FromRole="Cliente" ToRole="Direccion" />
         </EntityType>
         <EntityType Name="Conductor">
           <Key>
@@ -531,34 +512,6 @@
           <Property Name="Id_cond_vehi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Conductor" Relationship="DBControlTaxiModel.FK_conductor_vehiculo_conductor" FromRole="Conductor_vehiculo" ToRole="Conductor" />
           <NavigationProperty Name="Vehiculo" Relationship="DBControlTaxiModel.FK_conductor_vehiculo_Vehiculo" FromRole="Conductor_vehiculo" ToRole="Vehiculo" />
-        </EntityType>
-        <EntityType Name="Direccion">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Latitud" Type="Double" Nullable="false" />
-          <Property Name="Longitud" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Empresa" Relationship="DBControlTaxiModel.FK_empresa_direccion" FromRole="Direccion" ToRole="Empresa" />
-          <NavigationProperty Name="Cliente" Relationship="DBControlTaxiModel.Cliente_Direccion" FromRole="Direccion" ToRole="Cliente" />
-        </EntityType>
-        <EntityType Name="Empresa">
-          <Key>
-            <PropertyRef Name="Id_empr" />
-          </Key>
-          <Property Name="Id_empr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Rut" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
-          <Property Name="Dig" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Descuento" Type="Int32" />
-          <Property Name="FormaDePago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Tarifa_id" Type="Int32" />
-          <Property Name="IdDireccion" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="DBControlTaxiModel.FK_cliente_empresa" FromRole="Empresa" ToRole="Cliente" />
-          <NavigationProperty Name="Direccion" Relationship="DBControlTaxiModel.FK_empresa_direccion" FromRole="Empresa" ToRole="Direccion" />
-          <NavigationProperty Name="Tarifa" Relationship="DBControlTaxiModel.FK_Empresa_Tarifa" FromRole="Empresa" ToRole="Tarifa" />
         </EntityType>
         <EntityType Name="estado">
           <Key>
@@ -657,18 +610,6 @@
           <NavigationProperty Name="Conductor" Relationship="DBControlTaxiModel.FK_Viaje_conductor" FromRole="Viaje" ToRole="Conductor" />
           <NavigationProperty Name="estado" Relationship="DBControlTaxiModel.FK_Viaje_estado" FromRole="Viaje" ToRole="estado" />
         </EntityType>
-        <Association Name="FK_cliente_empresa">
-          <End Type="DBControlTaxiModel.Empresa" Role="Empresa" Multiplicity="1" />
-          <End Type="DBControlTaxiModel.Cliente" Role="Cliente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empresa">
-              <PropertyRef Name="Id_empr" />
-            </Principal>
-            <Dependent Role="Cliente">
-              <PropertyRef Name="IdEmpresa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Viaje_cliente">
           <End Type="DBControlTaxiModel.Cliente" Role="Cliente" Multiplicity="0..1" />
           <End Type="DBControlTaxiModel.Viaje" Role="Viaje" Multiplicity="*" />
@@ -717,30 +658,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_empresa_direccion">
-          <End Type="DBControlTaxiModel.Direccion" Role="Direccion" Multiplicity="1" />
-          <End Type="DBControlTaxiModel.Empresa" Role="Empresa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Direccion">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Empresa">
-              <PropertyRef Name="IdDireccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Empresa_Tarifa">
-          <End Type="DBControlTaxiModel.Tarifa" Role="Tarifa" Multiplicity="0..1" />
-          <End Type="DBControlTaxiModel.Empresa" Role="Empresa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tarifa">
-              <PropertyRef Name="Id_Tarifa" />
-            </Principal>
-            <Dependent Role="Empresa">
-              <PropertyRef Name="Tarifa_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Viaje_estado">
           <End Type="DBControlTaxiModel.estado" Role="estado" Multiplicity="1" />
           <End Type="DBControlTaxiModel.Viaje" Role="Viaje" Multiplicity="*" />
@@ -764,10 +681,6 @@
               <PropertyRef Name="Id_Pefil" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="Cliente_Direccion">
-          <End Type="DBControlTaxiModel.Cliente" Role="Cliente" Multiplicity="*" />
-          <End Type="DBControlTaxiModel.Direccion" Role="Direccion" Multiplicity="*" />
         </Association>
         <EntityType Name="Reserva">
           <Key>
@@ -826,6 +739,61 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Latitud" Type="Double" Nullable="false" />
+          <Property Name="Longitud" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="DBControlTaxiModel.Cliente_Direccion" FromRole="Direccion" ToRole="Cliente" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="Id_empr" />
+          </Key>
+          <Property Name="Id_empr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rut" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="Dig" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descuento" Type="Int32" />
+          <Property Name="FormaDePago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tarifa_id" Type="Int32" />
+          <Property Name="IdDireccion" Type="Int32" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="DBControlTaxiModel.FK_cliente_empresa" FromRole="Empresa" ToRole="Cliente" />
+          <NavigationProperty Name="Tarifa" Relationship="DBControlTaxiModel.FK_Empresa_Tarifa" FromRole="Empresa" ToRole="Tarifa" />
+        </EntityType>
+        <Association Name="FK_cliente_empresa">
+          <End Type="DBControlTaxiModel.Empresa" Role="Empresa" Multiplicity="1" />
+          <End Type="DBControlTaxiModel.Cliente" Role="Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id_empr" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresa_Tarifa">
+          <End Type="DBControlTaxiModel.Tarifa" Role="Tarifa" Multiplicity="0..1" />
+          <End Type="DBControlTaxiModel.Empresa" Role="Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarifa">
+              <PropertyRef Name="Id_Tarifa" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="Tarifa_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Cliente_Direccion">
+          <End Type="DBControlTaxiModel.Cliente" Role="Cliente" Multiplicity="*" />
+          <End Type="DBControlTaxiModel.Direccion" Role="Direccion" Multiplicity="*" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -866,31 +834,6 @@
                 <ScalarProperty Name="Id_cond_vehi" ColumnName="Id_cond_vehi" />
                 <ScalarProperty Name="PatenteVehiculo" ColumnName="PatenteVehiculo" />
                 <ScalarProperty Name="RutConductor" ColumnName="RutConductor" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Direccion">
-            <EntityTypeMapping TypeName="DBControlTaxiModel.Direccion">
-              <MappingFragment StoreEntitySet="Direccion">
-                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
-                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Empresa">
-            <EntityTypeMapping TypeName="DBControlTaxiModel.Empresa">
-              <MappingFragment StoreEntitySet="Empresa">
-                <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
-                <ScalarProperty Name="Tarifa_id" ColumnName="Tarifa_id" />
-                <ScalarProperty Name="FormaDePago" ColumnName="FormaDePago" />
-                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Dig" ColumnName="Dig" />
-                <ScalarProperty Name="Rut" ColumnName="Rut" />
-                <ScalarProperty Name="Id_empr" ColumnName="Id_empr" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -989,14 +932,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="Cliente_Direccion" TypeName="DBControlTaxiModel.Cliente_Direccion" StoreEntitySet="Cliente-Direccion">
-            <EndProperty Name="Direccion">
-              <ScalarProperty Name="Id" ColumnName="IdDireccion" />
-            </EndProperty>
-            <EndProperty Name="Cliente">
-              <ScalarProperty Name="Id_Clie" ColumnName="IdCliente" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="Reserva">
             <EntityTypeMapping TypeName="DBControlTaxiModel.Reserva">
               <MappingFragment StoreEntitySet="Reserva">
@@ -1016,6 +951,40 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Direccion">
+            <EntityTypeMapping TypeName="DBControlTaxiModel.Direccion">
+              <MappingFragment StoreEntitySet="Direccion">
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresa">
+            <EntityTypeMapping TypeName="DBControlTaxiModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+                <ScalarProperty Name="Tarifa_id" ColumnName="Tarifa_id" />
+                <ScalarProperty Name="FormaDePago" ColumnName="FormaDePago" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Dig" ColumnName="Dig" />
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="Id_empr" ColumnName="Id_empr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Cliente_Direccion" TypeName="DBControlTaxiModel.Cliente_Direccion" StoreEntitySet="Cliente-Direccion">
+            <EndProperty Name="Direccion">
+              <ScalarProperty Name="Id" ColumnName="IdDireccion" />
+            </EndProperty>
+            <EndProperty Name="Cliente">
+              <ScalarProperty Name="Id_Clie" ColumnName="IdCliente" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
