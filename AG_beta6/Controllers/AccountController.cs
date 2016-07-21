@@ -72,7 +72,7 @@ namespace AG_beta6.Controllers
 
             var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
 
-            var perfil = db.Perfil.Where(x => x.Id_Perfil == x.Id_Perfil).ToList();
+            var perfil = db.Perfil.Where(x => x.Id_Perfil == user.Id_Pefil).ToList();
             if (perfil.Any())
             {
                 var roleClaims = perfil.Select(r => new Claim(ClaimTypes.Role, r.Dsc_Perfil));
@@ -492,7 +492,7 @@ namespace AG_beta6.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Dashboard","Home");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

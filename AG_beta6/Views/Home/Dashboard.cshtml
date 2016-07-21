@@ -8,43 +8,41 @@
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Carreras Por Conductor</h2>
+        <h2>Viajes de Hoy</h2>
         <canvas id="pieChart" style="height:250px"></canvas>
     </div>
     <div class="col-md-4">
-        <h2>Montos A la Fecha</h2>
+        <h2>Reservas de Hoy</h2>
         <canvas id="barChart" style="height:230px"></canvas>
     </div>
 </div>
-
 <script>
     $(function () {
+        var valuesConductor = [@Html.Raw(Json.Encode(ViewBag.resultConductor))];
+        var valuesReservas = [@Html.Raw(Json.Encode(ViewBag.resultReservas))];
         //--------------
         //- AREA CHART -
         //--------------
-
+        var clientes = [];
+        $.each(valuesReservas[0], function (key, value) {
+            clientes.push(key)
+        });
+        var reservas = [];
+        $.each(valuesReservas[0], function (key, value) {
+            reservas.push(value)
+        });
         var areaChartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            labels: clientes,
             datasets: [
               {
-                  label: "Electronics",
+                  label: "Reservas",
                   fillColor: "rgba(210, 214, 222, 1)",
                   strokeColor: "rgba(210, 214, 222, 1)",
                   pointColor: "rgba(210, 214, 222, 1)",
                   pointStrokeColor: "#c1c7d1",
                   pointHighlightFill: "#fff",
                   pointHighlightStroke: "rgba(220,220,220,1)",
-                  data: [65, 59, 80, 81, 56, 55, 40]
-              },
-              {
-                  label: "Digital Goods",
-                  fillColor: "rgba(60,141,188,0.9)",
-                  strokeColor: "rgba(60,141,188,0.8)",
-                  pointColor: "#3b8bba",
-                  pointStrokeColor: "rgba(60,141,188,1)",
-                  pointHighlightFill: "#fff",
-                  pointHighlightStroke: "rgba(60,141,188,1)",
-                  data: [28, 48, 40, 19, 86, 27, 90]
+                  data: reservas
               }
             ]
         };
@@ -56,44 +54,18 @@
         // Get context with jQuery - using jQuery's .get() method.
         var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
         var pieChart = new Chart(pieChartCanvas);
-        var PieData = [
-          {
-              value: 700,
-              color: "#f56954",
-              highlight: "#f56954",
-              label: "Chrome"
-          },
-          {
-              value: 500,
-              color: "#00a65a",
-              highlight: "#00a65a",
-              label: "IE"
-          },
-          {
-              value: 400,
-              color: "#f39c12",
-              highlight: "#f39c12",
-              label: "FireFox"
-          },
-          {
-              value: 600,
-              color: "#00c0ef",
-              highlight: "#00c0ef",
-              label: "Safari"
-          },
-          {
-              value: 300,
-              color: "#3c8dbc",
-              highlight: "#3c8dbc",
-              label: "Opera"
-          },
-          {
-              value: 100,
-              color: "#d2d6de",
-              highlight: "#d2d6de",
-              label: "Navigator"
-          }
-        ];
+        var PieData = [];
+        $.each(valuesConductor[0], function (key, value) {
+                PieData.push( 
+                  {
+                      value: value,
+                      color: "#f56954",
+                      highlight: "#f56954",
+                      label: key
+                  })
+            });
+          
+        
         var pieOptions = {
             //Boolean - Whether we should show a stroke on each segment
             segmentShowStroke: true,
@@ -130,9 +102,9 @@
         var barChartCanvas = $("#barChart").get(0).getContext("2d");
         var barChart = new Chart(barChartCanvas);
         var barChartData = areaChartData;
-        barChartData.datasets[1].fillColor = "#00a65a";
-        barChartData.datasets[1].strokeColor = "#00a65a";
-        barChartData.datasets[1].pointColor = "#00a65a";
+        barChartData.datasets[0].fillColor = "#00a65a";
+        barChartData.datasets[0].strokeColor = "#00a65a";
+        barChartData.datasets[0].pointColor = "#00a65a";
         var barChartOptions = {
             //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
             scaleBeginAtZero: true,

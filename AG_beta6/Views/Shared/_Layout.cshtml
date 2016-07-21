@@ -41,7 +41,7 @@
                 </li>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    if (User.Identity.Name == "Admin")
+                    if (User.IsInRole("Administrador"))
                     {
                         <li>
                             @Html.ActionLink("Dashboard", "Dashboard", "Home")
@@ -86,7 +86,7 @@
                             @Html.ActionLink("Conducto-Vehiculo", "Index", "Conductor_vehiculo")
                         </li>-->
                     }
-                    if (User.Identity.Name == "Operador")
+                    if (User.IsInRole("Operator"))
                     {
                         <li>
                             @Html.ActionLink("Clientes", "Index", "Cliente")
