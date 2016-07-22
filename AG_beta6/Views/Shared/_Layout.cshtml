@@ -86,11 +86,15 @@
                             @Html.ActionLink("Conducto-Vehiculo", "Index", "Conductor_vehiculo")
                         </li>-->
                     }
-                    if (User.IsInRole("Operator"))
+                    if (User.IsInRole("Operador"))
                     {
+                        
                         <li>
                             @Html.ActionLink("Clientes", "Index", "Cliente")
                         </li>
+    <li>
+        @Html.ActionLink("Dashboard", "Dashboard", "Home")
+    </li>
                         <li>
                             @Html.ActionLink("Empresas", "Index", "Empresa")
                         </li>

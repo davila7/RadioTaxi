@@ -5,6 +5,16 @@
 <div class="jumbotron">
     <h1>Dashoboard</h1>
 </div>
+<div class="row">
+    <div class="col-md-6">
+        <h3>Viajes finalizados mes de @DateTime.Now.ToString("MMMM")</h3>
+        <canvas id="barMes" style="height:230px"></canvas>
+    </div>  
+    <div class="col-md-6">
+        <h3>Viajes en proceso de Hoy</h3>
+        <canvas id="barDia" style="height:230px"></canvas>
+    </div>  
+</div>
 
 <div class="row">
     <div class="col-md-4">
@@ -15,11 +25,19 @@
         <h2>Reservas de Hoy</h2>
         <canvas id="barChart" style="height:230px"></canvas>
     </div>
+    <div class="col-md-4">
+        <h2>Reservas Pendientes</h2>
+        <canvas id="barPendientes" style="height:230px"></canvas>
+    </div>
 </div>
 <script>
     $(function () {
+
         var valuesConductor = [@Html.Raw(Json.Encode(ViewBag.resultConductor))];
         var valuesReservas = [@Html.Raw(Json.Encode(ViewBag.resultReservas))];
+        var valuesReservasP = [@Html.Raw(Json.Encode(ViewBag.resultReservasPendientes))];
+        var valuesViajes = [@Html.Raw(Json.Encode(ViewBag.resultViajes))];
+        var valuesViajesDia = [@Html.Raw(Json.Encode(ViewBag.resultViajesDia))];
         //--------------
         //- AREA CHART -
         //--------------
@@ -31,6 +49,68 @@
         $.each(valuesReservas[0], function (key, value) {
             reservas.push(value)
         });
+
+        var clientesP = [];
+        $.each(valuesReservasP[0], function (key, value) {
+            clientesP.push(key)
+        });
+        var reservasP = [];
+        $.each(valuesReservasP[0], function (key, value) {
+            reservasP.push(value)
+        });
+
+        var empresas = [];
+        $.each(valuesViajes[0], function (key, value) {
+            empresas.push(key)
+        });
+
+        var viajes = [];
+        $.each(valuesViajes[0], function (key, value) {
+            viajes.push(value)
+        });
+
+        var clientesDia = [];
+        $.each(valuesViajesDia[0], function (key, value) {
+            clientesDia.push(key)
+        });
+
+        var viajesDia = [];
+        $.each(valuesViajesDia[0], function (key, value) {
+            viajesDia.push(value)
+        });
+
+        var areaChartDataMes = {
+            labels: empresas,
+            datasets: [
+              {
+                  label: "Viajes",
+                  fillColor: "rgba(210, 214, 222, 10)",
+                  strokeColor: "rgba(210, 214, 222, 10)",
+                  pointColor: "rgba(210, 214, 222, 10)",
+                  pointStrokeColor: "#c1c8d1",
+                  pointHighlightFill: "#fff",
+                  pointHighlightStroke: "rgba(220,220,220,10)",
+                  data: viajes
+              }
+            ]
+        };
+
+        var areaChartDataP = {
+            labels: clientesP,
+            datasets: [
+              {
+                  label: "Reservas",
+                  fillColor: "rgba(210, 214, 222, 1)",
+                  strokeColor: "rgba(210, 214, 222, 1)",
+                  pointColor: "rgba(210, 214, 222, 1)",
+                  pointStrokeColor: "#c1c7d1",
+                  pointHighlightFill: "#fff",
+                  pointHighlightStroke: "rgba(220,220,220,1)",
+                  data: reservasP
+              }
+            ]
+        };
+
         var areaChartData = {
             labels: clientes,
             datasets: [
@@ -47,6 +127,22 @@
             ]
         };
 
+        var areaChartDataDia = {
+            labels: clientesDia,
+            datasets: [
+              {
+                  label: "Viajes Hoy",
+                  fillColor: "rgba(210, 214, 222, 1)",
+                  strokeColor: "rgba(210, 214, 222, 1)",
+                  pointColor: "rgba(210, 214, 222, 1)",
+                  pointStrokeColor: "#c1c7d1",
+                  pointHighlightFill: "#fff",
+                  pointHighlightStroke: "rgba(220,220,220,1)",
+                  data: viajesDia
+              }
+            ]
+        };
+
 
         //-------------
         //- PIE CHART -
@@ -56,16 +152,16 @@
         var pieChart = new Chart(pieChartCanvas);
         var PieData = [];
         $.each(valuesConductor[0], function (key, value) {
-                PieData.push( 
-                  {
-                      value: value,
-                      color: "#f56954",
-                      highlight: "#f56954",
-                      label: key
-                  })
-            });
-          
-        
+            PieData.push(
+              {
+                  value: value,
+                  color: "#f56954",
+                  highlight: "#f56954",
+                  label: key
+              })
+        });
+
+
         var pieOptions = {
             //Boolean - Whether we should show a stroke on each segment
             segmentShowStroke: true,
@@ -94,7 +190,45 @@
         // You can switch between pie and douhnut using the method below.
         pieChart.Doughnut(PieData, pieOptions);
 
+        //-------------
+        //- BAR CHART -
+        //-------------
+        var barChartCanvasP = $("#barPendientes").get(0).getContext("2d");
+        var barChartP = new Chart(barChartCanvasP);
+        var barChartDataP = areaChartDataP;
+        barChartDataP.datasets[0].fillColor = "#00a65a";
+        barChartDataP.datasets[0].strokeColor = "#00a65a";
+        barChartDataP.datasets[0].pointColor = "#00a65a";
+        var barChartOptionsP = {
+            //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+            scaleBeginAtZero: true,
+            //Boolean - Whether grid lines are shown across the chart
+            scaleShowGridLines: true,
+            //String - Colour of the grid lines
+            scaleGridLineColor: "rgba(0,0,0,.05)",
+            //Number - Width of the grid lines
+            scaleGridLineWidth: 1,
+            //Boolean - Whether to show horizontal lines (except X axis)
+            scaleShowHorizontalLines: true,
+            //Boolean - Whether to show vertical lines (except Y axis)
+            scaleShowVerticalLines: true,
+            //Boolean - If there is a stroke on each bar
+            barShowStroke: true,
+            //Number - Pixel width of the bar stroke
+            barStrokeWidth: 2,
+            //Number - Spacing between each of the X value sets
+            barValueSpacing: 5,
+            //Number - Spacing between data sets within X values
+            barDatasetSpacing: 1,
+            //String - A legend template
+            legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+            //Boolean - whether to make the chart responsive
+            responsive: true,
+            maintainAspectRatio: true
+        };
 
+        barChartOptionsP.datasetFill = false;
+        barChartP.Bar(barChartDataP, barChartOptionsP);
 
         //-------------
         //- BAR CHART -
@@ -135,5 +269,88 @@
 
         barChartOptions.datasetFill = false;
         barChart.Bar(barChartData, barChartOptions);
+
+
+
+        //-------------
+        //- BAR CHART -
+        //-------------
+        var barChartCanvasMes = $("#barMes").get(0).getContext("2d");
+        var barChartMes = new Chart(barChartCanvasMes);
+        var barChartDataMes = areaChartDataMes;
+        barChartDataMes.datasets[0].fillColor = "#00a65a";
+        barChartDataMes.datasets[0].strokeColor = "#00a65a";
+        barChartDataMes.datasets[0].pointColor = "#00a65a";
+        var barChartOptionsMes = {
+            //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+            scaleBeginAtZero: true,
+            //Boolean - Whether grid lines are shown across the chart
+            scaleShowGridLines: true,
+            //String - Colour of the grid lines
+            scaleGridLineColor: "rgba(0,0,0,.05)",
+            //Number - Width of the grid lines
+            scaleGridLineWidth: 1,
+            //Boolean - Whether to show horizontal lines (except X axis)
+            scaleShowHorizontalLines: true,
+            //Boolean - Whether to show vertical lines (except Y axis)
+            scaleShowVerticalLines: true,
+            //Boolean - If there is a stroke on each bar
+            barShowStroke: true,
+            //Number - Pixel width of the bar stroke
+            barStrokeWidth: 2,
+            //Number - Spacing between each of the X value sets
+            barValueSpacing: 5,
+            //Number - Spacing between data sets within X values
+            barDatasetSpacing: 1,
+            //String - A legend template
+            legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+            //Boolean - whether to make the chart responsive
+            responsive: true,
+            maintainAspectRatio: true
+        };
+
+        barChartOptionsMes.datasetFill = false;
+        barChartMes.Bar(barChartDataMes, barChartOptionsMes);
+
+
+        //-------------
+        //- BAR CHART -
+        //-------------
+        var barChartCanvasDia = $("#barDia").get(0).getContext("2d");
+        var barChartDia = new Chart(barChartCanvasDia);
+        var barChartDataDia = areaChartDataDia;
+        barChartDataDia.datasets[0].fillColor = "#00a65a";
+        barChartDataDia.datasets[0].strokeColor = "#00a65a";
+        barChartDataDia.datasets[0].pointColor = "#00a65a";
+        var barChartOptionsDia = {
+            //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+            scaleBeginAtZero: true,
+            //Boolean - Whether grid lines are shown across the chart
+            scaleShowGridLines: true,
+            //String - Colour of the grid lines
+            scaleGridLineColor: "rgba(0,0,0,.05)",
+            //Number - Width of the grid lines
+            scaleGridLineWidth: 1,
+            //Boolean - Whether to show horizontal lines (except X axis)
+            scaleShowHorizontalLines: true,
+            //Boolean - Whether to show vertical lines (except Y axis)
+            scaleShowVerticalLines: true,
+            //Boolean - If there is a stroke on each bar
+            barShowStroke: true,
+            //Number - Pixel width of the bar stroke
+            barStrokeWidth: 2,
+            //Number - Spacing between each of the X value sets
+            barValueSpacing: 5,
+            //Number - Spacing between data sets within X values
+            barDatasetSpacing: 1,
+            //String - A legend template
+            legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+            //Boolean - whether to make the chart responsive
+            responsive: true,
+            maintainAspectRatio: true
+        };
+
+        barChartOptionsDia.datasetFill = false;
+        barChartDia.Bar(barChartDataDia, barChartOptionsDia);
     });
 </script>
