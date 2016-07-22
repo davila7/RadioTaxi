@@ -57,6 +57,7 @@ namespace AG_beta6.Controllers
         {
             if (ModelState.IsValid)
             {
+                reserva.Fecha_trx = DateTime.Now;
                 db.Reserva.Add(reserva);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index", new { message = "success" });
@@ -95,6 +96,7 @@ namespace AG_beta6.Controllers
         {
             if (ModelState.IsValid)
             {
+                reserva.Fecha_trx = DateTime.Now;
                 db.Entry(reserva).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index", new { message = "success" });

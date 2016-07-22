@@ -107,6 +107,11 @@ namespace AG_beta6.Controllers
             }
 
             Usuario user = db.Usuario.SingleOrDefault(x => x.Nombre_usr == model.Nombre_usr);
+            if (user.Flg_hab == false)
+            {
+                ModelState.AddModelError("", "Usuario Bloqueado del sistema.");
+                return View();
+            }
             if (user != null && (user.Contrasenha == model.Password))
             {
                 OwinSignIn(user, model.RememberMe);
