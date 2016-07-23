@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Crear</h2>
 
 
 @using (Html.BeginForm()) 
@@ -16,7 +16,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Desc_Tarifa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="Pasajero">Tarifa</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Desc_Tarifa, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Desc_Tarifa, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Valor_bndra, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="Pasajero">Valor Bandera</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Valor_bndra, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Valor_bndra, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Valor_mts, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="Pasajero">Valor Metros</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Valor_mts, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Valor_mts, "", new { @class = "text-danger" })
@@ -48,7 +48,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la lista", "Index")
 </div>
 
 @section Scripts {

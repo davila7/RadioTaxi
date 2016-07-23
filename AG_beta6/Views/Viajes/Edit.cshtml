@@ -306,7 +306,7 @@
 
     //calculates distance between two points in km's
     function calcDistance(p1, p2) {
-        return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2).toString().replace(/\,/g, '.');
+        return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2).toString().replace(/\./g, ',');
     }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAclk8AuFL14AjTXEX3Jbjxo38qUkJ9ynQ&libraries=places,geometry&callback=initMap"
