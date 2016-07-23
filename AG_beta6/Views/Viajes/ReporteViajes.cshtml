@@ -32,11 +32,12 @@
            Total Pagos
         </th>
     </tr>
+@{int sumtotal = 0;}
     @foreach (var itemTotales in Model.GroupBy(x => x.Conductor))
     { 
     <tr>
         <td>
-            @Html.DisplayFor(mi => itemTotales.First().Conductor.Nombre) (@Html.DisplayFor(mi => itemTotales.First().Conductor.Comision))
+            @Html.DisplayFor(mi => itemTotales.First().Conductor.Nombre) (%@Html.DisplayFor(mi => itemTotales.First().Conductor.Comision))
         </td>
         <td>
             @Html.DisplayFor(mi => itemTotales.Key.Viaje.Count)
@@ -49,10 +50,17 @@
                 total = total + ( Int32.Parse(itemValor.Value.ToString()) * Int32.Parse(comision.Value.ToString()));
                
             }
-            @total
+            @{sumtotal = sumtotal + total;}
+           $ @total
         </th>
     </tr>
     }
+    
+    <tr>
+    <td></td>
+    <td></td>
+    <td>$ @sumtotal</td>
+   </tr>
 </table>
             <button data-toggle="collapse" class="btn btn-info" data-target="#viajes">Mostrar Registros</button>
             <div id="viajes" class="collapse">

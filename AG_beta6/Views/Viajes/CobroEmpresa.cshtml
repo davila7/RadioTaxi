@@ -32,6 +32,7 @@
             Total Pagos
         </th>
     </tr>
+    @{int sumtotal = 0;}
     @foreach (var itemTotales in Model.GroupBy(x => x.Cliente))
     {
         <tr>
@@ -49,10 +50,16 @@
                     total = total + (Int32.Parse(itemValor.Value.ToString()));
 
                 }
-                @total
+                @{sumtotal = sumtotal + total;}
+                $ @total
             </th>
         </tr>
     }
+    <tr>
+        <td></td>
+        <td></td>
+        <td>$ @sumtotal</td>
+    </tr>
 </table>
 <button data-toggle="collapse" class="btn btn-info" data-target="#viajes">Mostrar Registros</button>
 <div id="viajes" class="collapse">
